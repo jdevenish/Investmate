@@ -6,12 +6,15 @@ import Header from "./Components/Header";
 import Main from "./Components/Main";
 import Footer from "./Components/Footer";
 
+import stocksObj from "./StaticDataFiles/collectionTechnologyServices.json"
+
 
 function App() {
-    const [stocksArr, setStocksArr] = useState([{name:"justin"}]);
+    const [stocksArr, setStocksArr] = useState(stocksObj);
     const [selectedSymbl, setSelectedSymbl] = useState("MSFT");
     const [showDetailsFor, setShowDetailsFor] = useState("")
     const [sectors, setSectors] = useState([]);
+    const [selectedSector, setSelectedSector] = useState("")
 
     // Fetch Stock Sectors
     useEffect(() => {
@@ -24,7 +27,7 @@ function App() {
             console.log("FUNCTION - fetch stock sectors: ",json)
             setSectors(json)
         }
-        // makeApiCall()
+        makeApiCall()
     }, []);
 
     // Fetch Details for User Provided Symbol
@@ -45,9 +48,15 @@ function App() {
 
     return (
         <div className="App">
-            <Header sectors={sectors}/>
+            <Header sectors={sectors} setSelectedSector={setSelectedSector}/>
             <div className="contentContainer" >
-                <StocksContext.Provider value={ {stocksArr, setStocksArr, setSelectedSymbl} }>
+                <StocksContext.Provider value={ {stocksArr,
+                                              setStocksArr,
+                                          setSelectedSymbl,
+                                             selectedSymbl,
+                                                   sectors,
+                                            selectedSector,
+                                         setSelectedSector} }>
                     <Main />
                 </StocksContext.Provider>
             </div>

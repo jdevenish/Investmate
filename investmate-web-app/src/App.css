@@ -55,3 +55,33 @@
 .search-button{
   margin-left: 10px;
 }
+
+.research {
+  margin: 8%;
+}
+
+.research-sectors {
+  /*padding: 3px;*/
+  width: 27%;
+  background-color: #3B138D;
+  color: white;
+  border-radius: 15px;
+}
+
+.research-cards {
+
+}
+
+.nav-pills .nav-link.active{
+  color: #3B138D;
+  background-color: white;
+  font-weight: bold;
+  border: 1px solid #3B138D;
+}
+
+/*a.nav-link{*/
+/*  color: #3B138D;*/
+/*}*/
+/*a.myColors{*/
+/*  color: #3B138D;*/
+/*}*/

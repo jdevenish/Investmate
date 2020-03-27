@@ -14,7 +14,7 @@ import {
 import '../App.css';
 
 
-function Header({sectors}) {
+function Header({sectors, setSelectedSector}) {
     /*
         TODO: Need to pass the selected sector to research
      */
@@ -23,7 +23,9 @@ function Header({sectors}) {
     const searchOptions = sectors.map((sector, i) => {
         return (
             <DropdownItem key={i}>
-               <Link to="/research">{sector.name}</Link>
+               <Link
+                   to="/research"
+                   onClick={()=>setSelectedSector(sector.name)}>{sector.name}</Link>
             </DropdownItem>
         );
     });
