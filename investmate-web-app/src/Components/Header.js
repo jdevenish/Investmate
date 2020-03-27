@@ -1,9 +1,7 @@
 import React, {useContext, useState} from 'react';
 import { Link } from 'react-router-dom';
 import {
-    Collapse,
     Navbar,
-    NavbarToggler,
     NavbarBrand,
     Nav,
     NavItem,
@@ -12,13 +10,14 @@ import {
     DropdownToggle,
     DropdownMenu,
     DropdownItem,
-    NavbarText
 } from 'reactstrap';
-
+import '../App.css';
 
 
 function Header({sectors}) {
-
+    /*
+        TODO: Need to pass the selected sector to research
+     */
 
 
     const searchOptions = sectors.map((sector, i) => {
@@ -46,7 +45,6 @@ function Header({sectors}) {
                         <NavLink href="/favs/">My Favorites</NavLink>
                     </NavItem>
                 </Nav>
-
             </Navbar>
         </div>
     );
