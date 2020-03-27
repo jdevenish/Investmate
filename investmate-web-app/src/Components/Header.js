@@ -19,7 +19,7 @@ function Header({sectors}) {
         TODO: Need to pass the selected sector to research
      */
 
-
+    console.log("Header - sectors: ",sectors)
     const searchOptions = sectors.map((sector, i) => {
         return (
             <DropdownItem key={i}>

@@ -47,3 +47,11 @@
   padding: 10px 0 10px 40px;
   height: 20%;
 }
+
+.search-container{
+  width: 400px;
+}
+
+.search-button{
+  margin-left: 10px;
+}
