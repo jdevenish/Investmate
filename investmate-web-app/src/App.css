@@ -1,7 +1,7 @@
 .App {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  /*justify-content: space-between;*/
   height: 100vh;
 }
 
@@ -58,11 +58,13 @@
 
 .research {
   margin: 8%;
+  display: flex;
+  align-items: flex-start;
 }
 
 .research-sectors {
   /*padding: 3px;*/
-  width: 27%;
+  width: 30%;
   background-color: #3B138D;
   color: white;
   border-radius: 15px;
@@ -79,9 +81,30 @@
   border: 1px solid #3B138D;
 }
 
-/*a.nav-link{*/
-/*  color: #3B138D;*/
-/*}*/
-/*a.myColors{*/
-/*  color: #3B138D;*/
-/*}*/
+.research-cards{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.research-cards-cardContainer{
+  max-width: 400px;
+  margin-bottom: 20px;
+}
+
+.research-cards-iconContainer{
+  width: 75%;
+  margin: 10px auto;
+}
+.research-cards-iconContainer > img {
+  width: 75%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.research-pagination {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
