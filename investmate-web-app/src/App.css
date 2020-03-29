@@ -108,3 +108,32 @@
   justify-content: center;
   margin-bottom: 20px;
 }
+
+.details-overviewContainer {
+  width: 85%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+}
+
+.details-overviewContainer__header {
+  width: 65vw;
+}
+
+.details-detailsContainer {
+  background-image: url("https://res.cloudinary.com/doaftkgbv/image/upload/v1585510524/concrete-texture_jedfhl.png");
+  display: flex;
+  justify-content: center;
+  margin: 10px 0;
+}
+
+.details-detailsContainer__table {
+  width: 85%;
+  margin: 20px;
+  background-color: white;
+}
+
+.row {
+  justify-content: space-between;
+
+}

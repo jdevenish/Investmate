@@ -12,8 +12,7 @@ function Main() {
             <Route exact path="/" component={Home} />
             <Route path="/favs" component={Favs} />
             <Route path="/research" component={Research} />
-            <Route path="/details/:symbl" render={ (routerProps) =>
-                <Details {...routerProps} />} />
+            <Route path="/details/:symbl" component={Details}  />
             <Redirect to="/" />
         </Switch>
     );

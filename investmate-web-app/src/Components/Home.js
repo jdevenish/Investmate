@@ -10,7 +10,7 @@ function Home(props) {
 
     const handleUserSubmit = e => {
         sharedStates.setSelectedSymbl(symbl)
-        // console.log("Home - sharedStates: ",sharedStates)
+        console.log("Home - sharedStates: ",sharedStates)
     }
 
     const handleChange = e => { setSymbl(e.target.value) }
@@ -30,6 +30,7 @@ function Home(props) {
                     className="search-button"
                     onClick={handleUserSubmit}>Get started</Button></Link>
             </InputGroup>
+
         </div>
     );
 }

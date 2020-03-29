@@ -1,24 +1,27 @@
 import React, {useState, useContext, useEffect} from 'react';
 import { StocksContext } from '../App'
 import { Nav, NavItem, NavLink } from 'reactstrap';
+import { Link } from 'react-router-dom';
 import {
     Card, CardImg, CardText, CardBody,
     CardTitle, CardSubtitle, Button, CardFooter
 } from 'reactstrap';
 import ResearchPagination from './ResearchPagination'
+import apiCred from "../apiDetails";
 
-function Research(props) {
+function Research() {
     const [currentPage, setCurrentPage] = useState(1)
+    const [haveImg, setHaveImg] = useState([]);
     const cardLimit =  24;
     const sharedStates = useContext(StocksContext)
-    console.log("Research - context check: ",sharedStates)
+    // console.log("Research - context check: ",sharedStates)
 
     // Sort stocks from highest to lowest Total Volume
     let sortedStocksArr = sharedStates.stocksArr.sort((a,b) => {
         return b.avgTotalVolume-a.avgTotalVolume
     });
 
-    console.log("Research - sortedStocksArr: ",sortedStocksArr)
+    // console.log("Research - sortedStocksArr: ",sortedStocksArr)
 
     // Identify currently selected category and add active class.
     // myColors overrides default active behavior
@@ -45,46 +48,62 @@ function Research(props) {
     // Fetch icons on page load and/or when category changes
     useEffect( () => {
         // fetch Icon URL and add to Object
-        const productionURL = "https://cloud.iexapis.com/stable/";
-        const productionAPIKey = "pk_cd56e3f5acb247ea8f5b446212057641";
-        sortedStocksArr.forEach( (company, index) => {
-            if(index < 30) {
-                const fetchImgAPI = `${productionURL}/stock/${company.symbol}/logo?token=${productionAPIKey}`;
-                const makeImgApiCall = async () => {
-                    const res = await fetch(fetchImgAPI);
-                    const json = await res.json();
-                    company["imgURL"] = json.url;
+        // Only fetch if we haven't previously.
+        // Need to reduce # of calls. Getting a lot of 429s
+        if(!haveImg[currentPage]){
+            sortedStocksArr.forEach( (company, index) => {
+                const upperLimit = (cardLimit * (currentPage));
+                const lowerLimit = (cardLimit * (currentPage-1));
+                // console.log(`Research - Limit check: lowerLimit = ${lowerLimit}  ,  upperLimit = ${upperLimit}`)
+                if(index >= lowerLimit && index < upperLimit) {
+                    const fetchImgAPI = `${apiCred.url}/stock/${company.symbol}/logo?token=${apiCred.apiKey}`;
+                    const makeImgApiCall = async () => {
+                        const res = await fetch(fetchImgAPI);
+                        const json = await res.json();
+                        company["imgURL"] = json.url;
+                    };
+                    // makeImgApiCall()
+                    // console.log("Research - verify IMG URL: ", company.imgURL)
                 }
-                // makeImgApiCall()
-                console.log("Research - verify IMG URL: ", company.imgURL)
-            }
-        })
+            });
+            let newHaveImg = [...haveImg];
+            newHaveImg[currentPage] = true;
+            setHaveImg(newHaveImg)
+        }
+    }, [currentPage]);
 
-    }, [sharedStates.selectedSector])
+    function handleStockSelection(symbl) {
+        sharedStates.setSelectedSymbl(symbl)
+    }
 
     //
     const stockCards = sortedStocksArr.map( (company, i) => {
-        // console.log("Research - lower limit: ", i >= (cardLimit * (currentPage-1)))
-        // console.log("Research - upper limit: ", i < (cardLimit * (currentPage)))
-        if(i >= (cardLimit * (currentPage-1)) && i < (cardLimit * (currentPage))){
+        const upperLimit = (cardLimit * (currentPage));
+        const lowerLimit = (cardLimit * (currentPage-1));
+
+        if(i >= lowerLimit && i < upperLimit){
             // Convert EPOCH date
             let lastUpdated = new Date(company.latestUpdate * 1000);
             lastUpdated.toJSON();
-            console.log("Research - last updated conversion check: ", lastUpdated)
+            // console.log("Research - last updated conversion check: ", lastUpdated)
 
             return(
                 <div className="research-cards-cardContainer" key={i}>
-                    <Card>
-                        <div className="research-cards-iconContainer">
-                            <img src={company.imgURL} alt={company.symbol} />
-                        </div>
-                        <CardBody>
-                            <CardTitle>{company.companyName}</CardTitle>
-                            <CardSubtitle>{company.symbol}</CardSubtitle>
-                            <CardText>Some quick example text to build on the card title and make up the bulk of the card's content.</CardText>
-                            <CardFooter className="text-muted">Last Updated: {String(lastUpdated)} </CardFooter>
-                        </CardBody>
-                    </Card>
+                    <Link
+                        to={`/details/${company.symbol}`}
+                        onClick={() => handleStockSelection(company.symbol)}>
+                        <Card>
+                            <div className="research-cards-iconContainer">
+                                <img src={company.imgURL} alt={company.symbol} />
+                            </div>
+                            <CardBody>
+                                <CardTitle>{company.companyName}</CardTitle>
+                                <CardSubtitle>{company.symbol}</CardSubtitle>
+                                <CardText>Some quick example text to build on the card title and make up the bulk of the card's content.</CardText>
+                                <CardFooter className="text-muted">Last Updated: {String(lastUpdated)} </CardFooter>
+                            </CardBody>
+                        </Card>
+                    </Link>
                 </div>
             );
         }
@@ -104,7 +123,9 @@ function Research(props) {
                     {stockCards}
                 </div>
             </div>
-            <ResearchPagination maxStocks={sortedStocksArr.length} setCurrentPage={setCurrentPage} />
+            <ResearchPagination
+                maxStocks={sortedStocksArr.length}
+                setCurrentPage={setCurrentPage} />
         </div>
     );
 }

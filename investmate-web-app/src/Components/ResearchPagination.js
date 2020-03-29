@@ -7,10 +7,10 @@ function ResearchPagination({maxStocks, setCurrentPage}) {
     return (
         <div className="research-pagination">
         <Pagination aria-label="Page navigation example">
-            <PaginationItem enabled>
+            <PaginationItem >
                 <PaginationLink first onClick={() => setPageRange(1)} />
             </PaginationItem>
-            <PaginationItem enabled>
+            <PaginationItem >
                 <PaginationLink previous onClick={() => setPageRange(pageRange-5)} />
             </PaginationItem>
             <PaginationItem active>
@@ -38,10 +38,10 @@ function ResearchPagination({maxStocks, setCurrentPage}) {
                     {pageRange + 4}
                 </PaginationLink>
             </PaginationItem>
-            <PaginationItem enabled>
+            <PaginationItem >
                 <PaginationLink next onClick={() => setPageRange(pageRange+5)} />
             </PaginationItem>
-            <PaginationItem enabled>
+            <PaginationItem >
                 <PaginationLink last onClick={() => setPageRange(Math.round((maxStocks/24)-5))} />
             </PaginationItem>
         </Pagination>
