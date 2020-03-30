@@ -5,7 +5,7 @@
     sandbox = false ==> uses production api creds
 */
 
-const sandbox = true;
+const sandbox = false;
 
 
 const apiCred = {

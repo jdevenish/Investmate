@@ -5,9 +5,11 @@ import {
 } from 'reactstrap';
 
 function CompanyOverview({sharedStates, currentSymbolDetails}) {
-    console.log("Company Overview: ", currentSymbolDetails)
+    console.log("Company Overview - current Symbol details ", currentSymbolDetails)
     const overviewObj = sharedStates.showDetailsFor.overview;
-    const detailsObj = sharedStates.showDetailsFor.balancesheet;
+
+    const keyStats = sharedStates.showDetailsFor.keyStats;
+    console.log("Company Overview - Key Stats: ", keyStats)
 
     return (
         <div className="details-overviewContainer">
@@ -28,13 +30,24 @@ function CompanyOverview({sharedStates, currentSymbolDetails}) {
                             <img src={currentSymbolDetails.imgURL} alt={currentSymbolDetails.symbol} />
                         </div>
                         <CardBody>
-                            <CardTitle>{currentSymbolDetails.companyName}</CardTitle>
-                            <CardText>{overviewObj.description}</CardText>
+                            <CardTitle>Track {currentSymbolDetails.companyName} on investmate!</CardTitle>
+                            <CardText>{currentSymbolDetails.companyName} ({currentSymbolDetails.symbol})</CardText>
+                            <CardText><a href={overviewObj.website}>{overviewObj.website}</a></CardText>
+                            <CardText>Exchange: {overviewObj.exchange}</CardText>
+                            <div className="research-cards-cardContainer__spacer"/>
+                            <Button color="primary" size="lg" block>Track {overviewObj.symbol}</Button>
                         </CardBody>
                     </Card>
                 </div>
                 <div> {/* Button */}
-                    <Button color="primary" size="lg" block>Track {overviewObj.symbol}</Button>
+                    <p className="disclaimer">Disclaimer: Any investment you’ve selected
+                        here, which may be available
+                        on the investmate platform, is intended to be used for
+                        informational purposes only, should not be relied
+                        upon as the sole basis for making any investment
+                        decision, and is not intended to be a recommendation
+                        or advice by investmate that is based on your investment
+                        time horizon and/or risk tolerance.</p>
                 </div>
             </div>
         </div>

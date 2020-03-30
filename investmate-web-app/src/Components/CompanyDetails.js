@@ -3,12 +3,13 @@ import { TabContent, TabPane, Nav, NavItem, NavLink, Card, Button, CardTitle, Ca
 import classnames from 'classnames';
 
 function CompanyDetails({sharedStates, currentSymbolDetails}) {
-
+    const keyStats = sharedStates.showDetailsFor.keyStats;
+    const overView = sharedStates.showDetailsFor.overview;
     const [activeTab, setActiveTab] = useState('1');
 
     const toggle = tab => {
         if(activeTab !== tab) setActiveTab(tab);
-    }
+    };
 
     return (
         <div className="details-detailsContainer" >
@@ -46,44 +47,59 @@ function CompanyDetails({sharedStates, currentSymbolDetails}) {
                         </Row>
                         <Row>
                             <Col sm="8">
-                                <p>Since inception</p>
+                                <p>5 Years</p>
                             </Col>
+                            <p>{(keyStats.year5ChangePercent) ? keyStats.year5ChangePercent.toFixed(2) : (keyStats.year5ChangePercent)}%</p>
                         </Row>
                         <Row>
                             <Col sm="8">
                                 <p>Dividend Yield</p>
                             </Col>
+                            <p>{keyStats.dividendYield}%</p>
                         </Row>
                         <Row>
                             <Col sm="8">
                                 <p>Expense Ratio</p>
                             </Col>
+                            <p>{keyStats.peRatio}%</p>
                         </Row>
                     </TabPane>
                     <TabPane tabId="2">
-                        <Row>
+                        <Row className="details-detailsContainer__table-companyInfo">
                             <Col sm="6">
-                                <Card body>
-                                    <CardTitle>Special Title Treatment</CardTitle>
-                                    <CardText>With supporting text below as a natural lead-in to additional content.</CardText>
-                                    <Button>Go somewhere</Button>
-                                </Card>
+                                <p>{overView.description}</p>
                             </Col>
-                            <Col sm="6">
-                                <Card body>
-                                    <CardTitle>Special Title Treatment</CardTitle>
-                                    <CardText>With supporting text below as a natural lead-in to additional content.</CardText>
-                                    <Button>Go somewhere</Button>
-                                </Card>
+                            <Col sm="12">
+                                <Col sm="8" >
+                                    <p>CEO:</p>
+                                </Col>
+                                <p>{overView.CEO}</p>
+                                <Col sm="8" >
+                                    <p>Industry:</p>
+                                </Col>
+                                <p>{overView.industry}</p>
+                                <Col sm="8" >
+                                    <p>Employees:</p>
+                                </Col>
+                                <p>{overView.employees}</p>
+                                <Col sm="8" >
+                                    <p>Address::</p>
+                                </Col>
+                                <p>{overView.address}</p>
+                                <p>{overView.city}, {overView.state}</p>
+                                <p>{overView.zip}</p>
                             </Col>
                         </Row>
                     </TabPane>
                 </TabContent>
+
+            </div>
+            <div className="details-disclosure">
                 <h5>Disclosure</h5>
                 <p>The historical data for individual securities quoted on this website represents past
-                performance reported as an average annual return for a given time horizon. Historical performance
-                over the last 5 years, for example, is simply what the average return per year (compound annual
-                growth rate) was for the investment over the past 5 years.</p>
+                    performance reported as an average annual return for a given time horizon. Historical performance
+                    over the last 5 years, for example, is simply what the average return per year (compound annual
+                    growth rate) was for the investment over the past 5 years.</p>
             </div>
         </div>
     );

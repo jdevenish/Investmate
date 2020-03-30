@@ -1,25 +1,31 @@
 import React, {useState, useContext, useEffect} from 'react';
-import { StocksContext } from '../App'
-import { Nav, NavItem, NavLink } from 'reactstrap';
 import { Link } from 'react-router-dom';
-import {
-    Card, CardImg, CardText, CardBody,
-    CardTitle, CardSubtitle, Button, CardFooter
-} from 'reactstrap';
+import { Nav, NavItem, NavLink,
+        Card, CardText, CardBody,
+        CardTitle, CardSubtitle, CardFooter} from 'reactstrap';
 import ResearchPagination from './ResearchPagination'
 import apiCred from "../apiDetails";
+import { StocksContext } from '../App'
+
+
 
 function Research() {
     const [currentPage, setCurrentPage] = useState(1)
+
     const [haveImg, setHaveImg] = useState([]);
     const cardLimit =  24;
     const sharedStates = useContext(StocksContext)
     // console.log("Research - context check: ",sharedStates)
 
+    const upperLimit = (cardLimit * (currentPage));
+    const lowerLimit = (cardLimit * (currentPage-1));
+
     // Sort stocks from highest to lowest Total Volume
     let sortedStocksArr = sharedStates.stocksArr.sort((a,b) => {
         return b.avgTotalVolume-a.avgTotalVolume
     });
+    sharedStates.setStocksArr(sortedStocksArr);
+
 
     // console.log("Research - sortedStocksArr: ",sortedStocksArr)
 
@@ -45,16 +51,17 @@ function Research() {
         }
     });
 
-    // Fetch icons on page load and/or when category changes
+    // Fetch icons on page load and/or when category changes.
+    // Add icon url to stocksArr for future use
     useEffect( () => {
-        // fetch Icon URL and add to Object
         // Only fetch if we haven't previously.
         // Need to reduce # of calls. Getting a lot of 429s
+        console.log("RESEARCH: haveImage check - page:",currentPage,"  !haveImg[currenPage]: ",!haveImg[currentPage])
         if(!haveImg[currentPage]){
-            sortedStocksArr.forEach( (company, index) => {
-                const upperLimit = (cardLimit * (currentPage));
-                const lowerLimit = (cardLimit * (currentPage-1));
-                // console.log(`Research - Limit check: lowerLimit = ${lowerLimit}  ,  upperLimit = ${upperLimit}`)
+            const copyStocksArr = [...sharedStates.stocksArr]
+            // console.log(`Research - Limit check: lowerLimit = ${lowerLimit}  ,  upperLimit = ${upperLimit}`)
+            // Fetch icons between lower and upper limits
+            copyStocksArr.forEach( (company, index) => {
                 if(index >= lowerLimit && index < upperLimit) {
                     const fetchImgAPI = `${apiCred.url}/stock/${company.symbol}/logo?token=${apiCred.apiKey}`;
                     const makeImgApiCall = async () => {
@@ -62,10 +69,14 @@ function Research() {
                         const json = await res.json();
                         company["imgURL"] = json.url;
                     };
-                    // makeImgApiCall()
-                    // console.log("Research - verify IMG URL: ", company.imgURL)
+                    makeImgApiCall();
+                    console.log("RESEARCH: verify IMG URL: ", company.imgURL)
                 }
             });
+
+            // Update States:
+            sharedStates.setStocksArr(copyStocksArr);
+
             let newHaveImg = [...haveImg];
             newHaveImg[currentPage] = true;
             setHaveImg(newHaveImg)
@@ -77,10 +88,7 @@ function Research() {
     }
 
     //
-    const stockCards = sortedStocksArr.map( (company, i) => {
-        const upperLimit = (cardLimit * (currentPage));
-        const lowerLimit = (cardLimit * (currentPage-1));
-
+    const stockCards = sharedStates.stocksArr.map( (company, i) => {
         if(i >= lowerLimit && i < upperLimit){
             // Convert EPOCH date
             let lastUpdated = new Date(company.latestUpdate * 1000);

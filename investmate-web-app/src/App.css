@@ -1,7 +1,7 @@
 .App {
   display: flex;
   flex-direction: column;
-  /*justify-content: space-between;*/
+  justify-content: space-between;
   height: 100vh;
 }
 
@@ -22,7 +22,6 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
 }
@@ -40,6 +39,10 @@
   }
 }
 
+.navbar {
+  height: 100px;
+}
+
 .footer {
   text-align: center;
   background-image: linear-gradient(to right, #3D138F, #3B138D);
@@ -50,6 +53,8 @@
 
 .search-container{
   width: 400px;
+  margin-top: 20px;
+  align-self: center;
 }
 
 .search-button{
@@ -64,7 +69,7 @@
 
 .research-sectors {
   /*padding: 3px;*/
-  width: 30%;
+  width: 100%;
   background-color: #3B138D;
   color: white;
   border-radius: 15px;
@@ -90,7 +95,8 @@
 
 .research-cards-cardContainer{
   max-width: 400px;
-  margin-bottom: 20px;
+  margin-bottom: 70px;
+
 }
 
 .research-cards-iconContainer{
@@ -111,7 +117,7 @@
 
 .details-overviewContainer {
   width: 85%;
-  margin: 0 auto;
+  margin: 40px auto;
   display: flex;
   justify-content: center;
 }
@@ -123,17 +129,134 @@
 .details-detailsContainer {
   background-image: url("https://res.cloudinary.com/doaftkgbv/image/upload/v1585510524/concrete-texture_jedfhl.png");
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  padding: 75px 0;
   margin: 10px 0;
 }
 
 .details-detailsContainer__table {
   width: 85%;
-  margin: 20px;
   background-color: white;
+  margin: 40px auto;
+  border-radius: 20px;
+  border: 1px solid #DBDADB;
 }
 
 .row {
   justify-content: space-between;
+  margin: 0 10px;
+}
 
+.details-disclosure {
+  background-color: transparent;
+  width: 85%;
+  margin: 0 auto;
+}
+
+.details-disclosure > h5{
+  font-size: 14px;
+}
+
+.details-disclosure > p {
+  font-size: 11px;
+  width: 40%;
+}
+
+.details-detailsContainer__table-companyInfo{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+}
+
+.research-cards-cardContainer__spacer {
+  height: 50px;
+}
+
+.carousel {
+  margin: 0 auto;
+}
+
+.carousel-item-next, .carousel-item-prev, .carousel-item.active{
+  display: flex;
+  justify-content: center;
+}
+
+.carousel-container{
+  margin: 100px auto;
+  /*background-color: #6a518f;*/
+  width: 50%;
+}
+
+.carousel-indicators > li {
+  background-color: #755d8d;
+}
+
+.carousel-indicators .active {
+  background-color: #3B138D;
+}
+
+
+.carousel-control-next-icon {
+  background-image: url("https://res.cloudinary.com/doaftkgbv/image/upload/v1585584448/next_1_jkjvoi.svg");
+}
+
+.carousel-control-prev-icon {
+  background-image: url("https://res.cloudinary.com/doaftkgbv/image/upload/v1585585188/back_f3yvbf.svg");
+}
+
+.nav-tabs .nav-link.active {
+  border-radius: 20px 0 0 0;
+  border: none;
+  border-bottom: 3px solid #3B138D;
+}
+
+.disclaimer {
+  margin-top: 10px;
+  font-size: 11px;
+}
+
+.btn-primary {
+  background-color: #3B138D;
+  border-color: #3D138F;
+  font-weight: bold;
+}
+
+.card{
+  box-shadow: 2px 4px 9px #888888;
+}
+
+.welcomeBackground {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  background-image: url("https://res.cloudinary.com/doaftkgbv/image/upload/v1585589941/whitediamond__2X_w2jgh3.png");
+  justify-content: space-between;
+  /*height: 100%;*/
+  /*align-self: stretch;*/
+  height: 75vh;
+}
+
+.callToAction {
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  margin-left: 40px;
+}
+
+.callToAction-slogan > h1{
+  font-family: 'Roboto', sans-serif;
+  font-weight: bold;
+  font-size: 3em;
+
+}
+
+.callToAction-slogan > h3, h5{
+  font-family: 'Ubuntu', sans-serif;
+}
+
+.homepageAsset{
+  align-self: center;
 }

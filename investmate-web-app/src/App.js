@@ -18,7 +18,7 @@ function App() {
     const [selectedSector, setSelectedSector] = useState("")
     const [showDetailsFor, setShowDetailsFor] = useState({
                                                                         symbl : "",
-                                                                        balancesheet : [],
+                                                                        keyStats : [],
                                                                         overview : {},
                                                                         peerGroups: []
                                                                     });
@@ -42,12 +42,14 @@ function App() {
 
         // Make API Calls
         const makeApiCall = async () => {
-            // Fetch Company Balance Sheet
-            const balanceSheetAPI = `${apiCred.url}/stock/${selectedSymbl}/balance-sheet?token=${apiCred.apiKey}`;
-            const resBalanceSheet = await fetch(balanceSheetAPI);
-            const jsonBalanceSheet = await resBalanceSheet.json();
+
+            // Update Selected Symbol
             tempBalanceSheetUpdate.symbl = selectedSymbl;
-            tempBalanceSheetUpdate.balancesheet = jsonBalanceSheet.balancesheet;
+
+            // Fetch Key Stats
+            const balanceSheetAPI = `${apiCred.url}/stock/${selectedSymbl}/stats/?token=${apiCred.apiKey}`;
+            const resBalanceSheet = await fetch(balanceSheetAPI);
+            tempBalanceSheetUpdate.keyStats = await resBalanceSheet.json();
 
             // Fetch Company Overview
             const overviewAPI = `${apiCred.url}/stock/${selectedSymbl}/company?token=${apiCred.apiKey}`;
