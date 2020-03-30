@@ -35,11 +35,11 @@ function Header({sectors, setSelectedSector}) {
             <Navbar color="light" light expand="md">
                 <NavbarBrand href="/" >investmate</NavbarBrand>
                 <Nav className="mr-auto" navbar>
-                    <UncontrolledDropdown nav inNavbar>
+                    <UncontrolledDropdown nav inNavbar className="myColors">
                         <DropdownToggle nav caret>
                             Research
                         </DropdownToggle>
-                        <DropdownMenu right>
+                        <DropdownMenu right >
                             {searchOptions}
                         </DropdownMenu>
                     </UncontrolledDropdown>

@@ -39,6 +39,7 @@
   }
 }
 
+
 .navbar {
   height: 100px;
 }
@@ -73,6 +74,12 @@
   background-color: #3B138D;
   color: white;
   border-radius: 15px;
+}
+
+.research-sectors > p{
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
 }
 
 .research-cards {
@@ -168,6 +175,7 @@
   flex-direction: row;
   flex-wrap: nowrap;
   justify-content: space-between;
+  margin-top: 15px;
 }
 
 .research-cards-cardContainer__spacer {
@@ -259,4 +267,24 @@
 
 .homepageAsset{
   align-self: center;
+}
+
+.dropdown-menu {
+  background-color: #3B138D;
+}
+
+.dropdown-item > a{
+  color: white;
+  text-decoration: none;
+}
+
+.dropdown-item:hover > a{
+  color: #3B138D;
+
+}
+
+.companyDetails{
+  display: flex;
+  justify-content: space-between;
+  width: 40vw;
 }

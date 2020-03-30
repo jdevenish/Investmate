@@ -15,7 +15,7 @@ function Research() {
     const [haveImg, setHaveImg] = useState([]);
     const cardLimit =  24;
     const sharedStates = useContext(StocksContext)
-    // console.log("Research - context check: ",sharedStates)
+    console.log("Research - context check: ",sharedStates)
 
     const upperLimit = (cardLimit * (currentPage));
     const lowerLimit = (cardLimit * (currentPage-1));

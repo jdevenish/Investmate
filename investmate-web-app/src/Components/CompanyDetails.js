@@ -70,24 +70,30 @@ function CompanyDetails({sharedStates, currentSymbolDetails}) {
                                 <p>{overView.description}</p>
                             </Col>
                             <Col sm="12">
-                                <Col sm="8" >
-                                    <p>CEO:</p>
+                                <Col className="companyDetails" sm="8" >
+                                    <h5>CEO:</h5>
+                                    <p>{overView.CEO}</p>
                                 </Col>
-                                <p>{overView.CEO}</p>
-                                <Col sm="8" >
-                                    <p>Industry:</p>
+
+                                <Col className="companyDetails" sm="8" >
+                                    <h5>Industry:</h5>
+                                    <p>{overView.industry}</p>
                                 </Col>
-                                <p>{overView.industry}</p>
-                                <Col sm="8" >
-                                    <p>Employees:</p>
+
+                                <Col className="companyDetails" sm="8" >
+                                    <h5>Employees:</h5>
+                                    <p>{overView.employees}</p>
                                 </Col>
-                                <p>{overView.employees}</p>
-                                <Col sm="8" >
-                                    <p>Address::</p>
+
+                                <Col className="companyDetails" sm="8" >
+                                    <h5>Address:</h5>
+                                    <div style={{textAlign: "right"}}>
+                                        <p>{overView.address}</p>
+                                        <p>{overView.city}, {overView.state}</p>
+                                        <p>{overView.zip}</p>
+                                    </div>
                                 </Col>
-                                <p>{overView.address}</p>
-                                <p>{overView.city}, {overView.state}</p>
-                                <p>{overView.zip}</p>
+
                             </Col>
                         </Row>
                     </TabPane>
