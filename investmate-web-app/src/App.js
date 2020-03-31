@@ -25,6 +25,8 @@ function App() {
                                                                         peerGroups: []
                                                                     });
 
+    //localStorage.setItem('stocksArr', JSON.stringify(stocksArr));
+
     // Fetch Stock Sectors
     useEffect(() => {
         const sectorsAPI = `${apiCred.url}/ref-data/sectors?token=${apiCred.apiKey}`;
@@ -37,7 +39,7 @@ function App() {
         makeApiCall()
     }, []);
 
-    // Fetch Balance Sheet & Overview of User Selected Symbol
+    // Fetch Key Stats & Overview of User Selected Symbol
     useEffect(() => {
         // Copy of showDetails for. Update and use for setShowDetailsFor
         const tempBalanceSheetUpdate = {...showDetailsFor};
@@ -73,6 +75,7 @@ function App() {
         makeApiCall()
 
     }, [selectedSymbl]);
+
 
 
     return (

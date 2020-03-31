@@ -9,9 +9,13 @@ function Details(props) {
 
     // Might be undefined if user searched from the home component instead of linking
     // through the research component
-    const sectorSymblDetails = sharedStates.stocksArr.find((currentSymbObj) => {
+
+    const stocksArrLocalStorage = JSON.parse(localStorage.getItem('stocksArr'));
+    const sectorSymblDetails = stocksArrLocalStorage.find((currentSymbObj) => {
         return currentSymbObj.symbol === sharedStates.selectedSymbl;
     });
+
+    console.log("sectorSymblDetails = ", sectorSymblDetails)
 
 
     /*

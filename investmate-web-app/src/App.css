@@ -43,6 +43,27 @@
 
 .navbar {
   height: 100px;
+  z-index: 50;
+}
+
+.mobileNav{
+  background-color: #3B138D;
+  color: white;
+  border: 1px solid white;
+}
+
+.mobileNav > li{
+  padding-left: 15px;
+}
+
+.mobileNav > li > h5{
+  font-size: 16px;
+  font-family: 'Ubuntu', sans-serif;
+}
+
+.navbar-light .navbar-nav .nav-link{
+  color: white;
+  font-family: 'Ubuntu', sans-serif;
 }
 
 .footer {
@@ -70,17 +91,7 @@
 }
 
 .research-sectors {
-  /*padding: 3px;*/
-  width: 100%;
-  background-color: #3B138D;
-  color: white;
-  border-radius: 15px;
-}
-
-.research-sectors > p{
-  text-align: center;
-  font-size: 24px;
-  font-weight: bold;
+  display: none;
 }
 
 .nav-pills .nav-link.active{
@@ -95,10 +106,12 @@
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-around;
+  align-items: center;
+  /*padding-right: 4px;*/
 }
 
 .research-cards-cardContainer{
-  max-width: 400px;
+  max-width: 320px;
   margin-bottom: 70px;
   height: 100%;
 }
@@ -121,14 +134,14 @@
 }
 
 .research-cards-iconContainer{
-  /*width: 75%;*/
   margin: 10px auto;
   padding: 3px;
-}
-.research-cards-iconContainer > img {
-  /*width: 75%;*/
-  /*margin-left: auto;*/
-  /*margin-right: auto;*/
+  width: 315px;
+  height: 315px;
+  background-position: center;
+  background-color: white;
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 
 .research-pagination {
@@ -251,6 +264,14 @@
   font-weight: bold;
 }
 
+.btn-primary:hover {
+  background-color: white;
+  color: #3B138D;
+  border-color: #3D138F;
+  font-weight: bold;
+}
+
+
 .card{
   box-shadow: 2px 4px 9px #888888;
 }
@@ -291,14 +312,19 @@
 
 .dropdown-menu {
   background-color: #3B138D;
+  border: 1px solid white;
 }
 
-.dropdown-item > a{
-  color: white;
+.dropdown-menu > a{
   text-decoration: none;
 }
 
-.dropdown-item:hover > a{
+
+.dropdown-item {
+  color: white;
+}
+
+.dropdown-item:hover {
   color: #3B138D;
 
 }
@@ -309,8 +335,8 @@
   width: 40vw;
 }
 
-a {
-  text-decoration: none;
+.tabletNav {
+  display: none;
 }
 
 .footer{
@@ -320,4 +346,51 @@ a {
 
 .footer > p > a{
   font-weight: bold;
+}
+
+/*==================================
+
+      TABLET & DESKTOP RESPONSIVE
+
+==================================*/
+@media (min-width: 768px){
+  .research-sectors {
+    /*padding: 3px;*/
+    display: block;
+    width: 100%;
+    background-color: #3B138D;
+    color: white;
+    border-radius: 15px;
+  }
+
+  .research-sectors > p{
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+  }
+
+  .research-cards-cardContainer{
+    max-width: 355px;
+    margin-bottom: 70px;
+    height: 100%;
+  }
+
+  .research-cards-iconContainer{
+    width: 350px;
+    height: 350px;
+  }
+
+  .mobileNav{
+    display: none;
+  }
+
+  .tabletNav {
+    display: flex;
+  }
+
+  .navbar-light .navbar-nav .nav-link{
+    color: grey;
+  }
+
+
 }

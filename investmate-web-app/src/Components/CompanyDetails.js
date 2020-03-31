@@ -55,7 +55,7 @@ function CompanyDetails({sharedStates, currentSymbolDetails}) {
                             <Col sm="8">
                                 <p>Dividend Yield</p>
                             </Col>
-                            <p>{keyStats.dividendYield}%</p>
+                            <p>{keyStats.dividendYield ? keyStats.dividendYield.toFixed(4) : keyStats.dividendYield}%</p>
                         </Row>
                         <Row>
                             <Col sm="8">
