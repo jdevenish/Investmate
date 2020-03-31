@@ -20,6 +20,7 @@ function Research() {
     const lowerLimit = (cardLimit * (currentPage-1));
 
     const stocksArrLocalStorage = JSON.parse(localStorage.getItem('stocksArr'));
+    // sharedStates.setStocksArr(stocksArrLocalStorage)
 
     console.log("stocks from storage: ", stocksArrLocalStorage)
     // console.log("Research - sortedStocksArr: ",sortedStocksArr)
@@ -81,16 +82,23 @@ function Research() {
     }
 
     //
-    const stockCards = stocksArrLocalStorage.map( (company, i) => {
+    const stockCards = sharedStates.stocksArr.map( (company, i) => {
         if(i >= lowerLimit && i < upperLimit){
             // Convert EPOCH date
             let lastUpdated = new Date(company.latestUpdate * 1000);
             lastUpdated.toJSON();
             // console.log("Research - last updated conversion check: ", lastUpdated)
 
-            const iconContent = {
-                backgroundImage: `url(${company.imgURL})`,
+            let iconContent = {
+                backgroundImage: `url(${company.imgURL})`
             };
+
+            // If company.imgURL === undefined we know the image is in local storage
+            if(!company.imgURL){
+                iconContent = {
+                    backgroundImage: `url(${stocksArrLocalStorage[i].imgURL})`
+                }
+            }
 
             return(
                 <div className="research-cards-cardContainer" key={i}>

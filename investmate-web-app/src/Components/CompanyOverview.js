@@ -11,6 +11,11 @@ function CompanyOverview({sharedStates, currentSymbolDetails}) {
     const keyStats = sharedStates.showDetailsFor.keyStats;
     console.log("Company Overview - Key Stats: ", keyStats)
 
+
+    const iconContent = {
+        backgroundImage: `url(${currentSymbolDetails.imgURL})`
+    };
+
     return (
         <div className="details-overviewContainer">
             <div> {/* left hand side*/}
@@ -26,8 +31,8 @@ function CompanyOverview({sharedStates, currentSymbolDetails}) {
             <div> {/* right hand card*/}
                 <div> {/* Card */}
                     <Card>
-                        <div className="research-cards-iconContainer">
-                            <img src={currentSymbolDetails.imgURL} alt={currentSymbolDetails.symbol} />
+                        <div style={iconContent} className="research-cards-iconContainer">
+
                         </div>
                         <CardBody>
                             <CardTitle>Track {currentSymbolDetails.companyName} on investmate!</CardTitle>

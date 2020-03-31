@@ -8,6 +8,7 @@ import {
     CarouselCaption
 } from 'reactstrap';
 import {Link} from "react-router-dom";
+import apiCred from "../apiDetails";
 // import CarouselItem from "reactstrap/es/CarouselItem";
 
 function CompanyPeers({sharedStates, currentSymbolDetails}) {
@@ -15,12 +16,15 @@ function CompanyPeers({sharedStates, currentSymbolDetails}) {
     const overviewObj = sharedStates.showDetailsFor.overview;
     const detailsObj = sharedStates.showDetailsFor.balancesheet;
     const peerGroup = sharedStates.showDetailsFor.peerGroups;
+    const [peerObjs, setPeerObjs] = useState([])
+
+    const stocksArrLocalStorage = JSON.parse(localStorage.getItem('stocksArr'));
 
     // console.log("CompanyPeers - peersArr: ", sharedStates.showDetailsFor.peerGroups);
 
     // Will only find peers for the sector we already have downloaded.
     // To reduce API limits, will not fetch unknown peers at this point
-    const knownPeers = sharedStates.stocksArr.filter((stock) => {
+    const knownPeers = stocksArrLocalStorage.filter((stock) => {
         for(let i=0; i<peerGroup.length; i++){
             if(stock.symbol === peerGroup[i]){
                 return stock
@@ -29,6 +33,22 @@ function CompanyPeers({sharedStates, currentSymbolDetails}) {
     });
 
 
+
+    useEffect( () => {
+        const makeImgApiCall = async () => {
+            for(let i=0; i<knownPeers.length; i++){
+               if(!knownPeers[i].imgURL){
+                   const fetchImgAPI = `${apiCred.url}/stock/${knownPeers[i].symbol}/logo?token=${apiCred.apiKey}`;
+                   const res = await fetch(fetchImgAPI);
+                   const json = await res.json();
+                   knownPeers[i]["imgURL"] = json.url;
+               }
+            }
+            setPeerObjs(knownPeers)
+        };
+        makeImgApiCall()
+    }, [])
+
     const [activeIndex, setActiveIndex] = useState(0);
     const [animating, setAnimating] = useState(false);
 
@@ -36,22 +56,28 @@ function CompanyPeers({sharedStates, currentSymbolDetails}) {
         if (animating) return;
         const nextIndex = activeIndex === knownPeers.length - 1 ? 0 : activeIndex + 1;
         setActiveIndex(nextIndex);
-    }
+    };
 
     const previous = () => {
         if (animating) return;
         const nextIndex = activeIndex === 0 ? knownPeers.length - 1 : activeIndex - 1;
         setActiveIndex(nextIndex);
-    }
+    };
 
     const goToIndex = (newIndex) => {
         if (animating) return;
         setActiveIndex(newIndex);
-    }
+    };
 
     console.log(knownPeers)
 
-    const peerCards = knownPeers.map((peerData, index) => {
+    const peerCards = peerObjs.map((peerData, index) => {
+
+        let iconContent = {
+            backgroundImage: `url(${peerData.imgURL})`
+        };
+
+
         return(
             <CarouselItem
                 onExiting={() => setAnimating(true)}
@@ -61,10 +87,11 @@ function CompanyPeers({sharedStates, currentSymbolDetails}) {
                 <div className="research-cards-cardContainer">
                     <Link
                         to={`/details/${peerData.symbol}`}
+                        onClick={() => sharedStates.setSelectedSymbl(peerData.symbol)}
                         >
                         <Card>
-                            <div className="research-cards-iconContainer">
-                                <img src={peerData.imgURL} alt={peerData.symbol} />
+                            <div style={iconContent} className="research-cards-iconContainer">
+                                {/*<img src={peerData.imgURL} alt={peerData.symbol} />*/}
                             </div>
                             <CardBody>
                                 <CardTitle>{peerData.companyName}</CardTitle>
