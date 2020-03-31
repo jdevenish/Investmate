@@ -82,6 +82,7 @@ function CompanyPeers({sharedStates, currentSymbolDetails}) {
 
     return (
         <div className="carousel-container">
+            <h4 style={{marginBottom: "45px", textAlign:"center"}}>Based on your selection, you may be interested in these similar companies...</h4>
             <Carousel
                 activeIndex={activeIndex}
                 next={next}

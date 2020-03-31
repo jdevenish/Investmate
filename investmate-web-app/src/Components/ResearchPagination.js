@@ -4,6 +4,11 @@ import { Pagination, PaginationItem, PaginationLink } from 'reactstrap';
 function ResearchPagination({maxStocks, setCurrentPage}) {
     const [pageRange, setPageRange] = useState(1)
 
+
+    const handlePageSelect = async page => {
+        setCurrentPage(page)
+    };
+
     return (
         <div className="research-pagination">
             <Pagination aria-label="Page navigation example">
@@ -13,28 +18,28 @@ function ResearchPagination({maxStocks, setCurrentPage}) {
                 <PaginationItem >
                     <PaginationLink previous onClick={() => setPageRange(pageRange-5)} />
                 </PaginationItem>
-                <PaginationItem active>
-                    <PaginationLink onClick={() => setCurrentPage(pageRange)}>
+                <PaginationItem >
+                    <PaginationLink onClick={() => handlePageSelect(pageRange)}>
                         {pageRange}
                     </PaginationLink>
                 </PaginationItem>
                 <PaginationItem>
-                    <PaginationLink onClick={() => setCurrentPage(pageRange+1)}>
+                    <PaginationLink onClick={() => handlePageSelect(pageRange+1)}>
                         {pageRange + 1}
                     </PaginationLink>
                 </PaginationItem>
                 <PaginationItem>
-                    <PaginationLink onClick={() => setCurrentPage(pageRange+2)}>
+                    <PaginationLink onClick={() => handlePageSelect(pageRange+2)}>
                         {pageRange + 2}
                     </PaginationLink>
                 </PaginationItem>
                 <PaginationItem>
-                    <PaginationLink onClick={() => setCurrentPage(pageRange+3)}>
+                    <PaginationLink onClick={() => handlePageSelect(pageRange+3)}>
                         {pageRange + 3}
                     </PaginationLink>
                 </PaginationItem>
                 <PaginationItem>
-                    <PaginationLink onClick={() => setCurrentPage(pageRange+4)}>
+                    <PaginationLink onClick={() => handlePageSelect(pageRange+4)}>
                         {pageRange + 4}
                     </PaginationLink>
                 </PaginationItem>

@@ -88,9 +88,9 @@ function CompanyDetails({sharedStates, currentSymbolDetails}) {
                                 <Col className="companyDetails" sm="8" >
                                     <h5>Address:</h5>
                                     <div style={{textAlign: "right"}}>
-                                        <p>{overView.address}</p>
-                                        <p>{overView.city}, {overView.state}</p>
-                                        <p>{overView.zip}</p>
+                                        <p style={{margin: "0"}}>{overView.address}</p>
+                                        <p style={{margin: "0"}}>{overView.city}, {overView.state}</p>
+                                        <p style={{margin: "0"}}>{overView.zip}</p>
                                     </div>
                                 </Col>
 

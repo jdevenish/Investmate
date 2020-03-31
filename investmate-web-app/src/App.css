@@ -10,6 +10,7 @@
   pointer-events: none;
 }
 
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
@@ -82,10 +83,6 @@
   font-weight: bold;
 }
 
-.research-cards {
-
-}
-
 .nav-pills .nav-link.active{
   color: #3B138D;
   background-color: white;
@@ -103,17 +100,35 @@
 .research-cards-cardContainer{
   max-width: 400px;
   margin-bottom: 70px;
+  height: 100%;
+}
 
+.research-cards-cardContainer > a{
+  text-decoration: none;
+  color: black;
+}
+
+.card-title{
+  font-size: 17px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.card-subtitle{
+  font-size: 14px;
+  text-align: center;
+  margin-bottom: 15px;
 }
 
 .research-cards-iconContainer{
-  width: 75%;
+  /*width: 75%;*/
   margin: 10px auto;
+  padding: 3px;
 }
 .research-cards-iconContainer > img {
-  width: 75%;
-  margin-left: auto;
-  margin-right: auto;
+  /*width: 75%;*/
+  /*margin-left: auto;*/
+  /*margin-right: auto;*/
 }
 
 .research-pagination {
@@ -177,6 +192,11 @@
   justify-content: space-between;
   margin-top: 15px;
 }
+
+.tab-content{
+  margin-top: 10px;
+}
+
 
 .research-cards-cardContainer__spacer {
   height: 50px;
@@ -287,4 +307,17 @@
   display: flex;
   justify-content: space-between;
   width: 40vw;
+}
+
+a {
+  text-decoration: none;
+}
+
+.footer{
+  color: white;
+  padding: 75px;
+}
+
+.footer > p > a{
+  font-weight: bold;
 }

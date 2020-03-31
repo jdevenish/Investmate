@@ -5,14 +5,16 @@ import React, {useState, createContext, useEffect} from 'react';
 import Header from "./Components/Header";
 import Main from "./Components/Main";
 import Footer from "./Components/Footer";
-import networkFunctions from "./networkFunctions";
 import apiCred from "./apiDetails";
 
 import stocksObj from "./StaticDataFiles/collectionTechnologyServices.json"
-import {fetchBalanceSheet, fetchOverview, fetchPeerGroups} from "./networking";
+
+const sortedArr = stocksObj.sort((a,b) => {
+    return b.avgTotalVolume - a.avgTotalVolume
+});
 
 function App() {
-    const [stocksArr, setStocksArr] = useState(stocksObj);
+    const [stocksArr, setStocksArr] = useState(sortedArr);
     const [selectedSymbl, setSelectedSymbl] = useState("MSFT");
     const [sectors, setSectors] = useState([]);
     const [selectedSector, setSelectedSector] = useState("")
