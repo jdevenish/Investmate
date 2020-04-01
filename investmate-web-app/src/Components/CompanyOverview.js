@@ -1,27 +1,20 @@
 import React, {useState, useContext, useEffect} from 'react';
 import {
     Card, CardImg, CardText, CardBody,
-        CardTitle, CardSubtitle, Button, CardFooter
+    CardTitle, CardSubtitle, Button, CardFooter, Spinner
 } from 'reactstrap';
 
 function CompanyOverview({sharedStates, currentSymbolDetails}) {
     console.log("Company Overview - current Symbol details ", currentSymbolDetails)
     const overviewObj = sharedStates.showDetailsFor.overview;
+    console.log("Company Overview - overviewObj check: ", overviewObj);
 
-    const keyStats = sharedStates.showDetailsFor.keyStats;
-    console.log("Company Overview - Key Stats: ", keyStats)
-
-
-    const iconContent = {
-        backgroundImage: `url(${currentSymbolDetails.imgURL})`
-    };
-
-    const updateFavs = async symbl => {
-        const copyFavs = [...sharedStates.favs]
-        copyFavs.push(sharedStates.showDetailsFor)
+    function updateFavs(imgURL) {
+        const copyFavs = [...sharedStates.favs];
+        sharedStates.showDetailsFor.imgURL = imgURL;
+        copyFavs.push(sharedStates.showDetailsFor);
+        localStorage.setItem("favs", JSON.stringify(copyFavs));
         sharedStates.setFavs(copyFavs);
-        console.log("Fav selected: ",copyFavs)
-        localStorage.setItem("favs", JSON.stringify(copyFavs))
     }
 
     return (
@@ -39,8 +32,8 @@ function CompanyOverview({sharedStates, currentSymbolDetails}) {
             <div> {/* right hand card*/}
                 <div> {/* Card */}
                     <Card>
-                        <div style={iconContent} className="research-cards-iconContainer">
-
+                        <div className="research-cards-iconContainer">
+                            {currentSymbolDetails.hasOwnProperty("imgURL") ? <img className="research-cards-iconContainer__icon" src={currentSymbolDetails.imgURL}/> : <Spinner color="secondary"/>}
                         </div>
                         <CardBody>
                             <CardTitle>Track {currentSymbolDetails.companyName} on investmate!</CardTitle>
@@ -51,7 +44,7 @@ function CompanyOverview({sharedStates, currentSymbolDetails}) {
                             <Button
                                 color="primary"
                                 size="lg"
-                                onClick={() => updateFavs(overviewObj.symbol)}
+                                onClick={() => updateFavs(currentSymbolDetails.imgURL)}
                                 block>Track {overviewObj.symbol}</Button>
                         </CardBody>
                     </Card>

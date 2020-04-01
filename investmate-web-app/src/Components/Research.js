@@ -20,6 +20,7 @@ function Research() {
 
     // Update selected stock symbol when card is clicked
     function handleStockSelection(symbl) {
+        localStorage.setItem("lastSelectedSymbol", symbl)
         sharedStates.setSelectedSymbl(symbl)
     }
 

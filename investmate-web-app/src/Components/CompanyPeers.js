@@ -1,11 +1,11 @@
 import React, {useState, useContext, useEffect} from 'react';
 import {
     Card, CardImg, CardText, CardBody,
-    CardTitle, CardSubtitle, Button, CardFooter,Carousel,
+    CardTitle, CardSubtitle, Button, CardFooter, Carousel,
     CarouselItem,
     CarouselControl,
     CarouselIndicators,
-    CarouselCaption
+    CarouselCaption, Spinner
 } from 'reactstrap';
 import {Link} from "react-router-dom";
 import apiCred from "../apiDetails";
@@ -18,13 +18,12 @@ function CompanyPeers({sharedStates, currentSymbolDetails}) {
     const peerGroup = sharedStates.showDetailsFor.peerGroups;
     const [peerObjs, setPeerObjs] = useState([])
 
-    const stocksArrLocalStorage = JSON.parse(localStorage.getItem(sharedStates.selectedSector));
 
     // console.log("CompanyPeers - peersArr: ", sharedStates.showDetailsFor.peerGroups);
 
     // Will only find peers for the sector we already have downloaded.
     // To reduce API limits, will not fetch unknown peers at this point
-    const knownPeers = stocksArrLocalStorage.filter((stock) => {
+    const knownPeers = sharedStates.stocksArr.filter((stock) => {
         for(let i=0; i<peerGroup.length; i++){
             if(stock.symbol === peerGroup[i]){
                 return stock
@@ -45,6 +44,7 @@ function CompanyPeers({sharedStates, currentSymbolDetails}) {
                }
             }
             setPeerObjs(knownPeers)
+
         };
         makeImgApiCall()
     }, [])
@@ -69,14 +69,7 @@ function CompanyPeers({sharedStates, currentSymbolDetails}) {
         setActiveIndex(newIndex);
     };
 
-    console.log(knownPeers)
-
     const peerCards = peerObjs.map((peerData, index) => {
-
-        let iconContent = {
-            backgroundImage: `url(${peerData.imgURL})`
-        };
-
 
         return(
             <CarouselItem
@@ -90,8 +83,8 @@ function CompanyPeers({sharedStates, currentSymbolDetails}) {
                         onClick={() => sharedStates.setSelectedSymbl(peerData.symbol)}
                         >
                         <Card>
-                            <div style={iconContent} className="research-cards-iconContainer">
-                                {/*<img src={peerData.imgURL} alt={peerData.symbol} />*/}
+                            <div className="research-cards-iconContainer" >
+                                {peerData.hasOwnProperty("imgURL") ? <img className="research-cards-iconContainer__icon" src={peerData.imgURL}/> : <Spinner color="secondary"/>}
                             </div>
                             <CardBody>
                                 <CardTitle>{peerData.companyName}</CardTitle>
@@ -116,7 +109,7 @@ function CompanyPeers({sharedStates, currentSymbolDetails}) {
                 previous={previous}
                 className="carousel"
             >
-                <CarouselIndicators items={knownPeers} activeIndex={activeIndex} onClickHandler={goToIndex} />
+                <CarouselIndicators items={peerObjs} activeIndex={activeIndex} onClickHandler={goToIndex} />
                 {peerCards}
                 <CarouselControl direction="prev" directionText="Previous" onClickHandler={previous} />
                 <CarouselControl direction="next" directionText="Next" onClickHandler={next} />

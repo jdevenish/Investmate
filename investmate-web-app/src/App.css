@@ -113,7 +113,7 @@
 }
 
 .research-cards-cardContainer{
-  max-width: 320px;
+  width: 320px;
   margin-bottom: 70px;
   height: 100%;
 
@@ -147,8 +147,8 @@
 }
 
 .research-cards-iconContainer__icon{
-  height: 128px;
-  width: 128px;
+  height: 175px;
+  width: 175px;
   border-radius: .25rem;
 }
 
@@ -156,6 +156,10 @@
   display: flex;
   justify-content: center;
   margin-bottom: 20px;
+}
+
+.details-container{
+  margin-top: 150px;
 }
 
 .details-overviewContainer {
@@ -358,9 +362,18 @@
 }
 
 .favsContainer {
+  margin-top: 150px;
   display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
+  flex-direction: column;
+  align-items: center;
+}
+
+.favsContainer > h1{
+  margin-bottom: 50px;
+}
+
+.favs-card-container {
+  width: 95vw;
 }
 
 /*==================================

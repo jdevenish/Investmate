@@ -3,32 +3,20 @@ import { StocksContext } from '../App'
 import CompanyOverview from "./CompanyOverview";
 import CompanyDetails from "./CompanyDetails";
 import CompanyPeers from "./CompanyPeers";
+import apiCred from "../apiDetails";
 
 function Details() {
     const sharedStates = useContext(StocksContext)
+    // console.log(sharedStates.selectedSector);
+    console.log("Details - detailComponent: Checking if this is running", sharedStates.selectedSymbl)
 
-    // Might be undefined if user searched from the home component instead of linking
-    // through the research component
-
-    console.log(sharedStates.selectedSector)
-    const stocksArrLocalStorage = JSON.parse(localStorage.getItem(sharedStates.selectedSector));
-
-
-    const sectorSymblDetails = stocksArrLocalStorage.find((currentSymbObj) => {
+    // Find the company object matching the user selected card/symbol
+    const sectorSymblDetails = sharedStates.stocksArr.find((currentSymbObj) => {
         return currentSymbObj.symbol === sharedStates.selectedSymbl;
     });
 
-    console.log("sectorSymblDetails = ", sectorSymblDetails)
-
-
-    /*
-     * Validating Data
-     */
-    console.log("Details - validate obj: ", sectorSymblDetails)
-    console.log("Details - showDetailsFor: ", sharedStates.showDetailsFor)
-
     return (
-        <div>
+        <div className="details-container">
             <CompanyOverview sharedStates={sharedStates} currentSymbolDetails={sectorSymblDetails}/>
             <CompanyDetails sharedStates={sharedStates} currentSymbolDetails={sectorSymblDetails}/>
             <CompanyPeers sharedStates={sharedStates} currentSymbolDetails={sectorSymblDetails} />
