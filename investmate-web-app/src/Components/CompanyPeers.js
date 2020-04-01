@@ -1,20 +1,18 @@
-import React, {useState, useContext, useEffect} from 'react';
+import React, {useState, useEffect} from 'react';
 import {
-    Card, CardImg, CardText, CardBody,
-    CardTitle, CardSubtitle, Button, CardFooter, Carousel,
+    Card, CardText, CardBody,
+    CardTitle, CardSubtitle, Carousel,
     CarouselItem,
     CarouselControl,
     CarouselIndicators,
-    CarouselCaption, Spinner
+     Spinner
 } from 'reactstrap';
 import {Link} from "react-router-dom";
 import apiCred from "../apiDetails";
-// import CarouselItem from "reactstrap/es/CarouselItem";
 
-function CompanyPeers({sharedStates, currentSymbolDetails}) {
+
+function CompanyPeers({sharedStates}) {
     // console.log("Company Overview: ", currentSymbolDetails)
-    const overviewObj = sharedStates.showDetailsFor.overview;
-    const detailsObj = sharedStates.showDetailsFor.balancesheet;
     const peerGroup = sharedStates.showDetailsFor.peerGroups;
     const [peerObjs, setPeerObjs] = useState([])
 
@@ -84,7 +82,7 @@ function CompanyPeers({sharedStates, currentSymbolDetails}) {
                         >
                         <Card>
                             <div className="research-cards-iconContainer" >
-                                {peerData.hasOwnProperty("imgURL") ? <img className="research-cards-iconContainer__icon" src={peerData.imgURL}/> : <Spinner color="secondary"/>}
+                                {peerData.hasOwnProperty("imgURL") ? <img className="research-cards-iconContainer__icon" src={peerData.imgURL} alt={peerData.symbol}/> : <Spinner color="secondary"/>}
                             </div>
                             <CardBody>
                                 <CardTitle>{peerData.companyName}</CardTitle>

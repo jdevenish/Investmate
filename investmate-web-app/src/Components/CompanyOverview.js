@@ -1,7 +1,7 @@
-import React, {useState, useContext, useEffect} from 'react';
+import React from 'react';
 import {
-    Card, CardImg, CardText, CardBody,
-    CardTitle, CardSubtitle, Button, CardFooter, Spinner
+    Card, CardText, CardBody,
+    CardTitle, Button, Spinner
 } from 'reactstrap';
 
 function CompanyOverview({sharedStates, currentSymbolDetails}) {
@@ -33,7 +33,7 @@ function CompanyOverview({sharedStates, currentSymbolDetails}) {
                 <div> {/* Card */}
                     <Card>
                         <div className="research-cards-iconContainer">
-                            {currentSymbolDetails.hasOwnProperty("imgURL") ? <img className="research-cards-iconContainer__icon" src={currentSymbolDetails.imgURL}/> : <Spinner color="secondary"/>}
+                            {currentSymbolDetails.hasOwnProperty("imgURL") ? <img className="research-cards-iconContainer__icon" src={currentSymbolDetails.imgURL} alt={currentSymbolDetails.symbol}/> : <Spinner color="secondary"/>}
                         </div>
                         <CardBody>
                             <CardTitle>Track {currentSymbolDetails.companyName} on investmate!</CardTitle>

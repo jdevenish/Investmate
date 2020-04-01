@@ -1,4 +1,4 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext} from 'react';
 import { StocksContext } from '../App'
 import { Link } from 'react-router-dom';
 import {Button, Card, CardBody, CardText, CardTitle, Spinner} from "reactstrap";
@@ -34,12 +34,12 @@ function Favs() {
                     onClick={() => handleStockSelection(fav.overview.symbol)} >
                     <Card>
                         <div className="research-cards-iconContainer" >
-                            {fav.hasOwnProperty("imgURL") ? <img className="research-cards-iconContainer__icon" src={fav.imgURL}/> : <Spinner color="secondary"/>}
+                            {fav.hasOwnProperty("imgURL") ? <img className="research-cards-iconContainer__icon" src={fav.imgURL} alt={fav.overview.symbol}/> : <Spinner color="secondary"/>}
                         </div>
                         <CardBody>
                             <CardTitle>{fav.overview.companyName}</CardTitle>
                             <CardText>({fav.overview.symbol})</CardText>
-                            <CardText><a href={fav.overview.website}>{fav.overview.website}</a></CardText>
+                            <CardText>50 Day Moving Average: {fav.keyStats.day50MovingAverage}</CardText>
                             <CardText>Exchange: {fav.overview.exchange}</CardText>
                             {/*<div className="research-cards-cardContainer__spacer"/>*/}
                             <Button

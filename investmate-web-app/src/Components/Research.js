@@ -1,7 +1,7 @@
-import React, {useState, useContext, useEffect} from 'react';
+import React, { useContext, useEffect} from 'react';
 import { Link } from 'react-router-dom';
 import { Nav, NavItem, NavLink,
-        Card, CardText, CardBody,
+        Card, CardBody,
         CardTitle, CardSubtitle, CardFooter, Spinner} from 'reactstrap';
 import ResearchPagination from './ResearchPagination'
 import { StocksContext } from '../App'
@@ -135,7 +135,7 @@ function Research() {
                         onClick={() => handleStockSelection(company.symbol)}>
                         <Card>
                             <div className="research-cards-iconContainer" >
-                                {company.hasOwnProperty("imgURL") ? <img className="research-cards-iconContainer__icon" src={company.imgURL}/> : <Spinner color="secondary"/>}
+                                {company.hasOwnProperty("imgURL") ? <img className="research-cards-iconContainer__icon" src={company.imgURL} alt={company.symbol}/> : <Spinner color="secondary"/>}
                             </div>
                             <CardBody>
                                 <CardTitle>{company.companyName}</CardTitle>

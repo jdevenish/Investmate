@@ -1,5 +1,5 @@
-import React, {useState, useContext, useEffect} from 'react';
-import { TabContent, TabPane, Nav, NavItem, NavLink, Card, Button, CardTitle, CardText, Row, Col } from 'reactstrap';
+import React, {useState} from 'react';
+import { TabContent, TabPane, Nav, NavItem, NavLink, Row, Col } from 'reactstrap';
 import classnames from 'classnames';
 
 function CompanyDetails({sharedStates, currentSymbolDetails}) {

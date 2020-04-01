@@ -4,16 +4,16 @@ import { Link } from 'react-router-dom';
 import { StocksContext } from '../App'
 import '../App.css'
 
-function Home(props) {
-    const [symbl, setSymbl] = useState("")
-    const sharedStates = useContext(StocksContext)
+function Home() {
+    const [symbl, setSymbl] = useState("");
+    const sharedStates = useContext(StocksContext);
 
     const handleUserSubmit = e => {
-        sharedStates.setSelectedSymbl(symbl)
+        sharedStates.setSelectedSymbl(symbl);
         console.log("Home - sharedStates: ",sharedStates)
-    }
+    };
 
-    const handleChange = e => { setSymbl(e.target.value) }
+    const handleChange = e => { setSymbl(e.target.value) };
 
     return (
         <div className="welcomeBackground">
@@ -39,7 +39,7 @@ function Home(props) {
                 </div>
             </div>
             <div className="homepageAsset">
-                <img src="https://res.cloudinary.com/doaftkgbv/image/upload/v1585590170/investmate-home-backgroundImage-v3_xcldcz.png" />
+                <img src="https://res.cloudinary.com/doaftkgbv/image/upload/v1585590170/investmate-home-backgroundImage-v3_xcldcz.png" alt="backgroundImg" />
             </div>
         </div>
     );

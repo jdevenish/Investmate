@@ -1,9 +1,8 @@
-import React, {useState, useContext, useEffect} from 'react';
+import React, { useContext } from 'react';
 import { StocksContext } from '../App'
 import CompanyOverview from "./CompanyOverview";
 import CompanyDetails from "./CompanyDetails";
 import CompanyPeers from "./CompanyPeers";
-import apiCred from "../apiDetails";
 
 function Details() {
     const sharedStates = useContext(StocksContext)
@@ -19,7 +18,7 @@ function Details() {
         <div className="details-container">
             <CompanyOverview sharedStates={sharedStates} currentSymbolDetails={sectorSymblDetails}/>
             <CompanyDetails sharedStates={sharedStates} currentSymbolDetails={sectorSymblDetails}/>
-            <CompanyPeers sharedStates={sharedStates} currentSymbolDetails={sectorSymblDetails} />
+            <CompanyPeers sharedStates={sharedStates}  />
         </div>
     );
 }
