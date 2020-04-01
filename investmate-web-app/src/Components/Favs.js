@@ -1,24 +1,24 @@
 import React, {useContext} from 'react';
 import { StocksContext } from '../App'
 import { Link } from 'react-router-dom';
-import {Button, Card, CardBody, CardText, CardTitle, Spinner} from "reactstrap";
+import {Card, CardBody, CardText, CardTitle, Spinner, Button} from "reactstrap";
 
 function Favs() {
-    const sharedStates = useContext(StocksContext)
+    const sharedStates = useContext(StocksContext);
 
 
-    console.log("Favs = ",sharedStates.favs)
+    console.log("Favs = ",sharedStates.favs);
 
     function removeFavs(index){
-        const copyFavs = [...sharedStates.favs]
-        copyFavs.splice(index,1)
+        const copyFavs = [...sharedStates.favs];
+        copyFavs.splice(index,1);
         localStorage.setItem("favs", JSON.stringify(copyFavs));
         sharedStates.setFavs(copyFavs)
     }
 
     // Update selected stock symbol when card is clicked
     function handleStockSelection(symbl) {
-        localStorage.setItem("lastSelectedSymbol", symbl)
+        localStorage.setItem("lastSelectedSymbol", symbl);
         sharedStates.setSelectedSymbl(symbl)
     }
 
@@ -41,7 +41,6 @@ function Favs() {
                             <CardText>({fav.overview.symbol})</CardText>
                             <CardText>50 Day Moving Average: {fav.keyStats.day50MovingAverage}</CardText>
                             <CardText>Exchange: {fav.overview.exchange}</CardText>
-                            {/*<div className="research-cards-cardContainer__spacer"/>*/}
                             <Button
                                 color="primary"
                                 size="lg"

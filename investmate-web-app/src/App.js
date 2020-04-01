@@ -10,13 +10,13 @@ import apiCred from "./apiDetails";
 import staticStockData from "./StaticDataFiles/collectionTechnologyServices.json"
 
 // These data sets are larger than 5MB making it impossible to store locally.
-const sectorBlackList = ["Health Services", "Finance", "Non-Energy Minerals", "Miscellaneous"]
+const sectorBlackList = ["Health Services", "Finance", "Non-Energy Minerals", "Miscellaneous"];
 
 function App() {
     const [stocksArr, setStocksArr] = useState([]);
     const [selectedSymbl, setSelectedSymbl] = useState("");
     const [sectors, setSectors] = useState([]);
-    const [selectedSector, setSelectedSector] = useState("dummySector")
+    const [selectedSector, setSelectedSector] = useState("dummySector");
     const [showDetailsFor, setShowDetailsFor] = useState({
                                                                         symbl : "",
                                                                         imgURL: "",
@@ -24,8 +24,8 @@ function App() {
                                                                         overview : {},
                                                                         peerGroups: []
                                                                     });
-    const [favs, setFavs] = useState([])
-    const [currentPage, setCurrentPage] = useState(0)
+    const [favs, setFavs] = useState([]);
+    const [currentPage, setCurrentPage] = useState(0);
 
 
 
@@ -122,12 +122,13 @@ function App() {
                 const makeSectorDataApiCall = async () => {
 
                     /* UNCOMMENT TO USE LIVE DATA */
-                    // const sectorDataAPI = `${apiCred.url}/stock/market/collection/sector?collectionName=${encodeURIComponent(selectedSector)}&token=${apiCred.apiKey}`
-                    // const resSectorData = await fetch(sectorDataAPI);
-                    // const jsonSectorData = await resSectorData.json()
+                    const sectorDataAPI = `${apiCred.url}/stock/market/collection/sector?collectionName=${encodeURIComponent(selectedSector)}&token=${apiCred.apiKey}`
+                    const resSectorData = await fetch(sectorDataAPI);
+                    const jsonSectorData = await resSectorData.json()
 
                     /* UNCOMMENT TO USE STATIC TEST DATA */
-                    const jsonSectorData = staticStockData;
+                    // const jsonSectorData = staticStockData;
+
                     const sortedSectorData = jsonSectorData.sort((a, b) => {
                         return b.avgTotalVolume - a.avgTotalVolume
                     });
