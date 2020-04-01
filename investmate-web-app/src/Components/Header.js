@@ -1,4 +1,4 @@
-import React, {useContext, useState} from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import {
     Navbar,
@@ -16,26 +16,26 @@ import {
 import '../App.css';
 
 
-function Header({sectors, selectedSector, setSelectedSector}) {
-    /*
-        TODO: Need to pass the selected sector to research
-     */
+function Header({sectors, selectedSector, setSelectedSector, setCurrentPage}) {
 
     const [collapsed, setCollapsed] = useState(true);
     const toggleNavbar = () => setCollapsed(!collapsed);
 
 
-
     // Clean up local storage. Data set is very large ~ 3.5MB
     function handleSectorSelection(newSector){
         if(newSector !== selectedSector){
+            console.log("Header - handleSectorSelection: New sector selection is = ",newSector);
             while(localStorage.getItem(selectedSector) !== null) {
-                console.log("removing key...")
+                console.log("Header - handleSectorSelection: removing old sector data");
                 localStorage.clear()
             }
+            localStorage.setItem("selectedSector", newSector);
             setSelectedSector(newSector);
+            setCurrentPage(0)
+        } else{
+            console.log("Header - handleSectorSelection: Selected sector is equal to previous selector. Do nothing ")
         }
-
     }
 
     // console.log("Header - sectors: ",sectors)

@@ -10,7 +10,10 @@ function Details() {
     // Might be undefined if user searched from the home component instead of linking
     // through the research component
 
+    console.log(sharedStates.selectedSector)
     const stocksArrLocalStorage = JSON.parse(localStorage.getItem(sharedStates.selectedSector));
+
+
     const sectorSymblDetails = stocksArrLocalStorage.find((currentSymbObj) => {
         return currentSymbObj.symbol === sharedStates.selectedSymbl;
     });

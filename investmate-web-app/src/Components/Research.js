@@ -4,59 +4,105 @@ import { Nav, NavItem, NavLink,
         Card, CardText, CardBody,
         CardTitle, CardSubtitle, CardFooter, Spinner} from 'reactstrap';
 import ResearchPagination from './ResearchPagination'
-import apiCred from "../apiDetails";
 import { StocksContext } from '../App'
+import apiCred from "../apiDetails";
 
 
 
 function Research() {
-    const [currentPage, setCurrentPage] = useState(0)
-    const [haveImg, setHaveImg] = useState([]);
     const cardLimit =  24;
     const sharedStates = useContext(StocksContext)
-    // console.log("Research - context check: ",sharedStates)
+    // console.log("Research - Checking State Values: ", sharedStates)
 
+    // Current page limits. Used in sharedStates.stocksArr
     const upperLimit = (cardLimit * (sharedStates.currentPage));
     const lowerLimit = sharedStates.currentPage > 0 ? (cardLimit * (sharedStates.currentPage-1)) : 0;
 
-    if(sharedStates.selectedSector === "" && localStorage.getItem("selectedSector") !== null){
-        sharedStates.setSelectedSector(localStorage.getItem("selectedSector"))
+    // Update selected stock symbol when card is clicked
+    function handleStockSelection(symbl) {
+        sharedStates.setSelectedSymbl(symbl)
     }
 
-    let testState = localStorage.getItem("selectedSector")
-    let stocksArrLocalStorage = JSON.parse(localStorage.getItem(testState));
-
-    // console.log("Research: key used for local storage: ", sharedStates.selectedSector)
-    // console.log("Research: value from local storage: ", stocksArrLocalStorage)
-
-    // Clean up local storage. Data set is very large ~ 3.5MB
+    // Clean up local storage when new sector is chosen
+    // Data set is very large (1.5MB - 4MB) and can't hold more than one sector
     function handleSectorSelection(newSector){
         if(newSector !== sharedStates.selectedSector) {
+            console.log("Research - handleSectorSelection: New sector selection is = ",newSector);
             while(localStorage.getItem(sharedStates.selectedSector) !== null) {
-                console.log("removing key...")
+                console.log("Research - handleSectorSelection: removing old sector data")
                 localStorage.clear();
             }
-            localStorage.setItem("selectedSector", newSector)
+            localStorage.setItem("selectedSector", newSector);
             sharedStates.setSelectedSector(newSector);
-            setHaveImg([])
             sharedStates.setCurrentPage(0)
+        } else {
+            console.log("Research - handleSectorSelection: Selected sector is equal to previous selector. Do nothing ")
         }
     }
 
 
+    /*============ NETWORK CALL - Fetch Stock Icons ============================
 
-    // sharedStates.setStocksArr(stocksArrLocalStorage)
+        ON sharedStates.currentPage Change: --> Includes initialization
+            IF currentPage is not = to initialized value
+                IF stocksArr of lowerLimit does not have property imgURL (stocksArr.hasOwnProperty(key))
+                    MAKE API call
+                        CREATE copy of stocksArr
+                        FOR each stock between lower and upper limits
+                            CREATE api URL
+                            MAKE request
+                            WAIT for response and save to value json
+                            UPDATE copy of stocksArr with imgURL key and value
+                        ENDFOR
+                        UPDATE local storage with copy of stocksArr
+                        UPDATE state setStocksArr
+                    END API call
+                ELSE
+                    Do nothing. Already fetched images for this page
+                ENDIF
+            ELSE
+                Do nothing. Still set to initialized value
+            ENDIF
 
-    console.log("Research :: stocks from storage: ", stocksArrLocalStorage)
-    // console.log("Research - sortedStocksArr: ",sortedStocksArr)
+     =========================================================================*/
+    useEffect( () => {
+        if(sharedStates.currentPage > 0){
+            console.log("RESEARCH - fetchIconData: current page has been updated = ", sharedStates.currentPage);
+            if(!sharedStates.stocksArr[lowerLimit].hasOwnProperty("imgURL")){
+                console.log("RESEARCH - fetchIconData: Need to fetch icons for this page");
+                // Make API call for all stocks visible on the page
+                const makeImgApiCall = async () => {
+                    const copyStocksArr = [...sharedStates.stocksArr];
+
+                    for(let i=lowerLimit; i<upperLimit; i++){
+                        const fetchImgAPI = `${apiCred.url}/stock/${copyStocksArr[i].symbol}/logo?token=${apiCred.apiKey}`;
+                        const res = await fetch(fetchImgAPI);
+                        const json = await res.json();
+                        copyStocksArr[i]["imgURL"] = json.url;
+                        console.log("RESEARCH - fetchIconData: verify IMG URL = ", copyStocksArr[i].imgURL)
+                    }
+                    console.log("RESEARCH - fetchIconData: data fetch complete. Updating states and local storage")
+                    // Update state INSIDE API call function
+                    localStorage.setItem(sharedStates.selectedSector, JSON.stringify(copyStocksArr));
+                    sharedStates.setStocksArr(copyStocksArr);
+                };
+                makeImgApiCall();
+            } else{
+                console.log("RESEARCH - fetchIconData: Do nothing. Have icons for this page = ", sharedStates.stocksArr[lowerLimit].imgURL);
+            }
+        } else{
+            console.log("RESEARCH - fetchIconData: Do nothing. Current page equals initialized value = ", sharedStates.currentPage)
+        }
+    }, [sharedStates.currentPage]);
+
+
 
     // Identify currently selected category and add active class.
-    // myColors overrides default active behavior
     const sectorList = sharedStates.sectors.map( (sector, index) => {
         if(sector.name === sharedStates.selectedSector) {
             return (
-                <NavItem key={index}  >
-                    <NavLink active className="myColors">
+                <NavItem key={index} >
+                    <NavLink active >
                         {sector.name}
                     </NavLink>
                 </NavItem>
@@ -72,66 +118,14 @@ function Research() {
         }
     });
 
-    // Fetch icons on page load and/or when category changes.
-    // Add icon url to stocksArr for future use
-    useEffect( () => {
-        // console.log("Fetch Icon Logic Check: if(stocksArrLocalStorage) = ", stocksArrLocalStorage, "   ")
-        // console.log("LowerLimit: ", lowerLimit)
-        // Only fetch images if we have retrieved the sector data first
-        console.log("fetch-icons: entered useEffect")
-        if(sharedStates.stocksArr.length > 0 || stocksArrLocalStorage) {
-            console.log("fetch-icons: local storage exists")
-            // Only fetch if we haven't previously.
-            const copyStocksArr = [...sharedStates.stocksArr];
-            if(!haveImg[sharedStates.currentPage] && !copyStocksArr[lowerLimit].imgURL){
-                console.log("fetch-icons: haven't fetched for this page and imgURL doesn't exist")
-                // Make API call for all stocks visible on the page
-                const makeImgApiCall = async () => {
-                    for(let i=lowerLimit; i<upperLimit; i++){
-                        const fetchImgAPI = `${apiCred.url}/stock/${copyStocksArr[i].symbol}/logo?token=${apiCred.apiKey}`;
-                        const res = await fetch(fetchImgAPI);
-                        const json = await res.json();
-                        copyStocksArr[i]["imgURL"] = json.url;
-                        console.log("RESEARCH: verify IMG URL: ", copyStocksArr[i].imgURL)
-                    }
-                    // Update state INSIDE API call function
-                    sharedStates.setStocksArr(copyStocksArr);
-                    localStorage.setItem(sharedStates.selectedSector, JSON.stringify(copyStocksArr));
-                };
-                makeImgApiCall();
-            }
-            // Update States:
-            let newHaveImg = [...haveImg];
-            newHaveImg[sharedStates.currentPage] = true;
-            setHaveImg(newHaveImg)
-        }
-
-    }, [sharedStates.currentPage]);
 
 
-    function handleStockSelection(symbl) {
-        sharedStates.setSelectedSymbl(symbl)
-    }
-
-    //
-
+    // Build cards for each company displayed on the page
     const stockCards = sharedStates.stocksArr.map( (company, i) => {
         if(i >= lowerLimit && i < upperLimit){
             // Convert EPOCH date
             let lastUpdated = new Date(company.latestUpdate * 1000);
             lastUpdated.toJSON();
-            // console.log("Research - last updated conversion check: ", lastUpdated)
-
-            let iconContent = {
-                backgroundImage: `url(${company.imgURL})`
-            };
-
-            // If company.imgURL === undefined we know the image is in local storage
-            if(!company.imgURL && stocksArrLocalStorage){
-                iconContent = {
-                    backgroundImage: `url(${stocksArrLocalStorage[i].imgURL})`
-                }
-            }
 
             return(
                 <div className="research-cards-cardContainer" key={i}>
@@ -139,8 +133,8 @@ function Research() {
                         to={`/details/${company.symbol}`}
                         onClick={() => handleStockSelection(company.symbol)}>
                         <Card>
-                            <div style={iconContent} className="research-cards-iconContainer">
-                                {/*<img src={company.imgURL} alt={company.symbol} />*/}
+                            <div className="research-cards-iconContainer" >
+                                {company.hasOwnProperty("imgURL") ? <img className="research-cards-iconContainer__icon" src={company.imgURL}/> : <Spinner color="secondary"/>}
                             </div>
                             <CardBody>
                                 <CardTitle>{company.companyName}</CardTitle>

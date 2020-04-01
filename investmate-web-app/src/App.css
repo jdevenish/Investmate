@@ -44,6 +44,8 @@
 .navbar {
   height: 100px;
   z-index: 50;
+  width: 100vw;
+  position: fixed;
 }
 
 .mobileNav{
@@ -85,7 +87,7 @@
 }
 
 .research {
-  margin: 8%;
+  margin: 150px 5% 5% 5%;
   display: flex;
   align-items: flex-start;
 }
@@ -114,6 +116,8 @@
   max-width: 320px;
   margin-bottom: 70px;
   height: 100%;
+
+
 }
 
 .research-cards-cardContainer > a{
@@ -134,14 +138,18 @@
 }
 
 .research-cards-iconContainer{
-  margin: 10px auto;
-  padding: 3px;
-  width: 315px;
-  height: 315px;
-  background-position: center;
-  background-color: white;
-  background-size: contain;
-  background-repeat: no-repeat;
+  width: 200px;
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+}
+
+.research-cards-iconContainer__icon{
+  height: 128px;
+  width: 128px;
+  border-radius: .25rem;
 }
 
 .research-pagination {
@@ -274,6 +282,7 @@
 
 .card{
   box-shadow: 2px 4px 9px #888888;
+
 }
 
 .welcomeBackground {
@@ -376,14 +385,15 @@
   }
 
   .research-cards-cardContainer{
-    max-width: 355px;
+    max-width: 350px;
     margin-bottom: 70px;
     height: 100%;
+
   }
 
   .research-cards-iconContainer{
-    width: 350px;
-    height: 350px;
+    width: 200px;
+    height: 200px;
   }
 
   .mobileNav{

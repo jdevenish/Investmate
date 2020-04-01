@@ -18,7 +18,7 @@ function CompanyPeers({sharedStates, currentSymbolDetails}) {
     const peerGroup = sharedStates.showDetailsFor.peerGroups;
     const [peerObjs, setPeerObjs] = useState([])
 
-    const stocksArrLocalStorage = JSON.parse(localStorage.getItem('stocksArr'));
+    const stocksArrLocalStorage = JSON.parse(localStorage.getItem(sharedStates.selectedSector));
 
     // console.log("CompanyPeers - peersArr: ", sharedStates.showDetailsFor.peerGroups);
 
