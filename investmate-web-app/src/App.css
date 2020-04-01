@@ -348,6 +348,12 @@
   font-weight: bold;
 }
 
+.favsContainer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
+
 /*==================================
 
       TABLET & DESKTOP RESPONSIVE

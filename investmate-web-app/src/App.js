@@ -7,14 +7,14 @@ import Main from "./Components/Main";
 import Footer from "./Components/Footer";
 import apiCred from "./apiDetails";
 
-import stocksObj from "./StaticDataFiles/collectionTechnologyServices.json"
-
-const sortedArr = stocksObj.sort((a,b) => {
-    return b.avgTotalVolume - a.avgTotalVolume
-});
+// import stocksObj from "./StaticDataFiles/collectionTechnologyServices.json"
+//
+// const sortedArr = stocksObj.sort((a,b) => {
+//     return b.avgTotalVolume - a.avgTotalVolume
+// });
 
 function App() {
-    const [stocksArr, setStocksArr] = useState(sortedArr);
+    const [stocksArr, setStocksArr] = useState([]);
     const [selectedSymbl, setSelectedSymbl] = useState("MSFT");
     const [sectors, setSectors] = useState([]);
     const [selectedSector, setSelectedSector] = useState("")
@@ -24,6 +24,8 @@ function App() {
                                                                         overview : {},
                                                                         peerGroups: []
                                                                     });
+    const [favs, setFavs] = useState([])
+    const [currentPage, setCurrentPage] = useState(0)
 
     //localStorage.setItem('stocksArr', JSON.stringify(stocksArr));
 
@@ -44,43 +46,64 @@ function App() {
         // Copy of showDetails for. Update and use for setShowDetailsFor
         const tempBalanceSheetUpdate = {...showDetailsFor};
 
-        // Make API Calls
-        const makeApiCall = async () => {
+        if(stocksArr.length > 0) {
 
-            // Update Selected Symbol
-            tempBalanceSheetUpdate.symbl = selectedSymbl;
+            // Make API Calls
+            const makeApiCall = async () => {
 
-            // Fetch Key Stats
-            const balanceSheetAPI = `${apiCred.url}/stock/${selectedSymbl}/stats/?token=${apiCred.apiKey}`;
-            const resBalanceSheet = await fetch(balanceSheetAPI);
-            tempBalanceSheetUpdate.keyStats = await resBalanceSheet.json();
+                // Update Selected Symbol
+                tempBalanceSheetUpdate.symbl = selectedSymbl;
 
-            // Fetch Company Overview
-            const overviewAPI = `${apiCred.url}/stock/${selectedSymbl}/company?token=${apiCred.apiKey}`;
-            const resOverview = await fetch(overviewAPI);
-            tempBalanceSheetUpdate.overview = await resOverview.json();
+                // Fetch Key Stats
+                const balanceSheetAPI = `${apiCred.url}/stock/${selectedSymbl}/stats/?token=${apiCred.apiKey}`;
+                const resBalanceSheet = await fetch(balanceSheetAPI);
+                tempBalanceSheetUpdate.keyStats = await resBalanceSheet.json();
 
-            // Fetch Peer Companies
-            const peerGroupAPI = `${apiCred.url}/stock/${selectedSymbl}/peers?token=${apiCred.apiKey}`;
-            const resPeerGroups = await fetch(peerGroupAPI);
-            tempBalanceSheetUpdate.peerGroups = await resPeerGroups.json();
+                // Fetch Company Overview
+                const overviewAPI = `${apiCred.url}/stock/${selectedSymbl}/company?token=${apiCred.apiKey}`;
+                const resOverview = await fetch(overviewAPI);
+                tempBalanceSheetUpdate.overview = await resOverview.json();
 
-            // tempBalanceSheetUpdate.symbl = selectedSymbl
-            // tempBalanceSheetUpdate.balancesheet = fetchBalanceSheet(selectedSymbl);
-            // tempBalanceSheetUpdate.overview = fetchOverview(selectedSymbl);
-            // tempBalanceSheetUpdate.peerGroups = fetchOverview(selectedSymbl);
+                // Fetch Peer Companies
+                const peerGroupAPI = `${apiCred.url}/stock/${selectedSymbl}/peers?token=${apiCred.apiKey}`;
+                const resPeerGroups = await fetch(peerGroupAPI);
+                tempBalanceSheetUpdate.peerGroups = await resPeerGroups.json();
 
-            setShowDetailsFor(tempBalanceSheetUpdate)
-        };
-        makeApiCall()
+                setShowDetailsFor(tempBalanceSheetUpdate)
+            };
+            makeApiCall()
+        }
 
     }, [selectedSymbl]);
 
 
+    useEffect( () => {
+
+        // Only fetch if sector selection has been made
+        if(selectedSector){
+            const fetchSectorData = async () => {
+                const sectorDataAPI = `${apiCred.url}/stock/market/collection/sector?collectionName=${encodeURIComponent(selectedSector)}&token=${apiCred.apiKey}`
+                const resSectorData = await fetch(sectorDataAPI);
+                const jsonSectorData = await resSectorData.json()
+
+                const sortedSectorData = jsonSectorData.sort((a,b) => {
+                    return b.avgTotalVolume - a.avgTotalVolume
+                });
+                localStorage.clear();
+                localStorage.setItem(selectedSector, JSON.stringify(sortedSectorData))
+                setStocksArr(sortedSectorData)
+                setCurrentPage(1)
+            };
+            fetchSectorData()
+        }
+
+
+    }, [selectedSector])
+
 
     return (
         <div className="App">
-            <Header sectors={sectors} setSelectedSector={setSelectedSector}/>
+            <Header sectors={sectors} selectedSector={selectedSector} setSelectedSector={setSelectedSector}/>
             <div className="contentContainer" >
                 <StocksContext.Provider value={ {stocksArr,
                                               setStocksArr,
@@ -89,7 +112,11 @@ function App() {
                                          setSelectedSector,
                                              selectedSymbl,
                                           setSelectedSymbl,
-                                            showDetailsFor } }>
+                                            showDetailsFor,
+                                                      favs,
+                                                   setFavs,
+                                               currentPage,
+                                            setCurrentPage} }>
                     <Main />
                 </StocksContext.Provider>
             </div>

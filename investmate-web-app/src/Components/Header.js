@@ -16,7 +16,7 @@ import {
 import '../App.css';
 
 
-function Header({sectors, setSelectedSector}) {
+function Header({sectors, selectedSector, setSelectedSector}) {
     /*
         TODO: Need to pass the selected sector to research
      */
@@ -24,10 +24,24 @@ function Header({sectors, setSelectedSector}) {
     const [collapsed, setCollapsed] = useState(true);
     const toggleNavbar = () => setCollapsed(!collapsed);
 
+
+
+    // Clean up local storage. Data set is very large ~ 3.5MB
+    function handleSectorSelection(newSector){
+        if(newSector !== selectedSector){
+            while(localStorage.getItem(selectedSector) !== null) {
+                console.log("removing key...")
+                localStorage.clear()
+            }
+            setSelectedSector(newSector);
+        }
+
+    }
+
     // console.log("Header - sectors: ",sectors)
     const searchOptions = sectors.map((sector, i) => {
         return (
-            <Link to="/research" key={i} onClick={()=>setSelectedSector(sector.name)}>
+            <Link to="/research" key={i} onClick={()=>handleSectorSelection(sector.name)}>
             <DropdownItem >
                 {sector.name}
             </DropdownItem>

@@ -5,9 +5,9 @@ function ResearchPagination({maxStocks, setCurrentPage}) {
     const [pageRange, setPageRange] = useState(1)
 
 
-    const handlePageSelect = async page => {
+    function handlePageSelect(page) {
         setCurrentPage(page)
-    };
+    }
 
     return (
         <div className="research-pagination">

@@ -16,6 +16,14 @@ function CompanyOverview({sharedStates, currentSymbolDetails}) {
         backgroundImage: `url(${currentSymbolDetails.imgURL})`
     };
 
+    const updateFavs = async symbl => {
+        const copyFavs = [...sharedStates.favs]
+        copyFavs.push(sharedStates.showDetailsFor)
+        sharedStates.setFavs(copyFavs);
+        console.log("Fav selected: ",copyFavs)
+        localStorage.setItem("favs", JSON.stringify(copyFavs))
+    }
+
     return (
         <div className="details-overviewContainer">
             <div> {/* left hand side*/}
@@ -40,7 +48,11 @@ function CompanyOverview({sharedStates, currentSymbolDetails}) {
                             <CardText><a href={overviewObj.website}>{overviewObj.website}</a></CardText>
                             <CardText>Exchange: {overviewObj.exchange}</CardText>
                             <div className="research-cards-cardContainer__spacer"/>
-                            <Button color="primary" size="lg" block>Track {overviewObj.symbol}</Button>
+                            <Button
+                                color="primary"
+                                size="lg"
+                                onClick={() => updateFavs(overviewObj.symbol)}
+                                block>Track {overviewObj.symbol}</Button>
                         </CardBody>
                     </Card>
                 </div>

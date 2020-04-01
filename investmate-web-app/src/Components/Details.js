@@ -4,13 +4,13 @@ import CompanyOverview from "./CompanyOverview";
 import CompanyDetails from "./CompanyDetails";
 import CompanyPeers from "./CompanyPeers";
 
-function Details(props) {
+function Details() {
     const sharedStates = useContext(StocksContext)
 
     // Might be undefined if user searched from the home component instead of linking
     // through the research component
 
-    const stocksArrLocalStorage = JSON.parse(localStorage.getItem('stocksArr'));
+    const stocksArrLocalStorage = JSON.parse(localStorage.getItem(sharedStates.selectedSector));
     const sectorSymblDetails = stocksArrLocalStorage.find((currentSymbObj) => {
         return currentSymbObj.symbol === sharedStates.selectedSymbl;
     });
