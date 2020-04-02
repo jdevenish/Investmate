@@ -33,10 +33,12 @@ What makes your project stand out?
 
 
 ## API Reference
-[Sectors](https://iexcloud.io/docs/api/#sectors)
-[Collections](https://iexcloud.io/docs/api/#collections)
-[Company Logo](https://iexcloud.io/docs/api/#logo)
-[Current Price](https://iexcloud.io/docs/api/#price-only)
-[Historical Prices](https://iexcloud.io/docs/api/#historical-prices)
-[Key Stats](https://iexcloud.io/docs/api/#key-stats)
+Download and import the Postman collection 
+
+[Sectors](https://iexcloud.io/docs/api/#sectors)</b>
+[Collections](https://iexcloud.io/docs/api/#collections)</b>
+[Company Logo](https://iexcloud.io/docs/api/#logo)</b>
+[Current Price](https://iexcloud.io/docs/api/#price-only)</b>
+[Historical Prices](https://iexcloud.io/docs/api/#historical-prices)</b>
+[Key Stats](https://iexcloud.io/docs/api/#key-stats)</b>
 [Peer Groups](https://iexcloud.io/docs/api/#peer-groups)
