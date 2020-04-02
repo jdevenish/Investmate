@@ -20,6 +20,7 @@ function App() {
     const [showDetailsFor, setShowDetailsFor] = useState({
                                                                         symbl : "",
                                                                         imgURL: "",
+                                                                   latestPrice: -1,
                                                                         keyStats : [],
                                                                         overview : {},
                                                                         peerGroups: []
@@ -175,7 +176,7 @@ function App() {
             ENDIF
     ==========================================================================*/
     useEffect(() => {
-        console.log("Is this even running? ????? ")
+        console.log("Is this even running? ????? ");
         if(selectedSymbl.length > 0){
             console.log("APP - detailsApiCall: User made a selection or we pulled a previous selection from local storage")
 
@@ -184,6 +185,15 @@ function App() {
 
                 // Update Selected Symbol
                 copyShowDetailsFor.symbl = selectedSymbl;
+
+                const priceAPI = `${apiCred.url}/stock/${selectedSymbl}/price?token=${apiCred.apiKey}`;
+                const resPriceAPI = await fetch(priceAPI)
+                copyShowDetailsFor.latestPrice = await resPriceAPI.json();
+
+                const fetchImgAPI = `${apiCred.url}/stock/${selectedSymbl}/logo?token=${apiCred.apiKey}`;
+                const res = await fetch(fetchImgAPI);
+                const json = await res.json();
+                copyShowDetailsFor.imgURL = json.url;
 
                 // Fetch Key Stats
                 const balanceSheetAPI = `${apiCred.url}/stock/${selectedSymbl}/stats/?token=${apiCred.apiKey}`;
@@ -214,40 +224,6 @@ function App() {
                 console.log("APP - detailsApiCall: New user. Do nothing and wait for selection")
             }
         }
-
-        // if(stocksArr.length > 0) {
-        //     console.log("APP - makeDetailsApiCall: symbol selected, now fetch data for =", selectedSymbl)
-        //     // Copy of showDetails for Update and use in setShowDetailsFor.
-        //     // Doing this to get existing object structure so I don't have to rebuild
-        //     const copyShowDetailsFor = {...showDetailsFor};
-        //
-        //     // Make API Calls
-        //     const makeDetailsApiCall = async () => {
-        //
-        //         // Update Selected Symbol
-        //         copyShowDetailsFor.symbl = selectedSymbl;
-        //
-        //         // Fetch Key Stats
-        //         const balanceSheetAPI = `${apiCred.url}/stock/${selectedSymbl}/stats/?token=${apiCred.apiKey}`;
-        //         const resBalanceSheet = await fetch(balanceSheetAPI);
-        //         copyShowDetailsFor.keyStats = await resBalanceSheet.json();
-        //
-        //         // Fetch Company Overview
-        //         const overviewAPI = `${apiCred.url}/stock/${selectedSymbl}/company?token=${apiCred.apiKey}`;
-        //         const resOverview = await fetch(overviewAPI);
-        //         copyShowDetailsFor.overview = await resOverview.json();
-        //
-        //         // Fetch Peer Companies
-        //         const peerGroupAPI = `${apiCred.url}/stock/${selectedSymbl}/peers?token=${apiCred.apiKey}`;
-        //         const resPeerGroups = await fetch(peerGroupAPI);
-        //         copyShowDetailsFor.peerGroups = await resPeerGroups.json();
-        //
-        //         setShowDetailsFor(copyShowDetailsFor)
-        //     };
-        //     makeDetailsApiCall()
-        // } else{
-        //     console.log("APP - makeDetailsApiCall: selectedSymbol is still in initialized state. Waiting for user selection")
-        // }
 
     }, [selectedSymbl]);
 

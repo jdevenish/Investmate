@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import { TabContent, TabPane, Nav, NavItem, NavLink, Row, Col } from 'reactstrap';
 import classnames from 'classnames';
 
-function CompanyDetails({sharedStates, currentSymbolDetails}) {
+function CompanyDetails({sharedStates}) {
     const keyStats = sharedStates.showDetailsFor.keyStats;
     const overView = sharedStates.showDetailsFor.overview;
     const [activeTab, setActiveTab] = useState('1');
@@ -43,7 +43,7 @@ function CompanyDetails({sharedStates, currentSymbolDetails}) {
                             <Col sm="8">
                                 <p>Last 12 months</p>
                             </Col>
-                            <p>{(currentSymbolDetails.ytdChange*100).toFixed(2)}%</p>
+                            <p>{keyStats.ytdChangePercent}%</p>
                         </Row>
                         <Row>
                             <Col sm="8">

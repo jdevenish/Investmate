@@ -23,7 +23,7 @@ function CompanyOverview({sharedStates, currentSymbolDetails}) {
                 <div className="details-overviewContainer__header">
                     <p>Ticker: {overviewObj.symbol}</p>
                     <h1>{overviewObj.companyName}</h1>
-                    <h1>${currentSymbolDetails.latestPrice} <span>({(currentSymbolDetails.changePercent*100).toFixed(2)}%) </span></h1>
+                    <h1>${sharedStates.showDetailsFor.latestPrice} </h1>
                 </div>
                 <div>
                     <h2>Add graph</h2>
@@ -33,18 +33,18 @@ function CompanyOverview({sharedStates, currentSymbolDetails}) {
                 <div> {/* Card */}
                     <Card>
                         <div className="research-cards-iconContainer">
-                            {currentSymbolDetails.hasOwnProperty("imgURL") ? <img className="research-cards-iconContainer__icon" src={currentSymbolDetails.imgURL} alt={currentSymbolDetails.symbol}/> : <Spinner color="secondary"/>}
+                            {sharedStates.showDetailsFor.hasOwnProperty("imgURL") ? <img className="research-cards-iconContainer__icon" src={sharedStates.showDetailsFor.imgURL} alt={overviewObj.symbol}/> : <Spinner color="secondary"/>}
                         </div>
                         <CardBody>
-                            <CardTitle>Track {currentSymbolDetails.companyName} on investmate!</CardTitle>
-                            <CardText>{currentSymbolDetails.companyName} ({currentSymbolDetails.symbol})</CardText>
+                            <CardTitle>Track {overviewObj.companyName} on investmate!</CardTitle>
+                            <CardText>{overviewObj.companyName} ({overviewObj.symbol})</CardText>
                             <CardText><a href={overviewObj.website}>{overviewObj.website}</a></CardText>
                             <CardText>Exchange: {overviewObj.exchange}</CardText>
                             <div className="research-cards-cardContainer__spacer"/>
                             <Button
                                 color="primary"
                                 size="lg"
-                                onClick={() => updateFavs(currentSymbolDetails.imgURL)}
+                                onClick={() => updateFavs(sharedStates.showDetailsFor.imgURL)}
                                 block>Track {overviewObj.symbol}</Button>
                         </CardBody>
                     </Card>
