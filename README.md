@@ -35,10 +35,17 @@ What makes your project stand out?
 ## API Reference
 Download and import the [Postman Collection](https://github.com/jdevenish/Investmate/blob/master/IEX%20Cloud.postman_collection.json) to test out the APIs yourself. Just add your own API key and off you go. 
 
-<b>[Sectors](https://iexcloud.io/docs/api/#sectors)</b>
-<b>[Collections](https://iexcloud.io/docs/api/#collections)</b>
-<b>[Company Logo](https://iexcloud.io/docs/api/#logo)</b>
-<b>[Current Price](https://iexcloud.io/docs/api/#price-only)</b>
-<b>[Historical Prices](https://iexcloud.io/docs/api/#historical-prices)</b>
-<b>[Key Stats](https://iexcloud.io/docs/api/#key-stats)</b>
-<b>[Peer Groups](https://iexcloud.io/docs/api/#peer-groups)</b>
+Links to documentation on IEX Cloud
+[Sectors](https://iexcloud.io/docs/api/#sectors)
+
+[Collections](https://iexcloud.io/docs/api/#collections)
+
+[Company Logo](https://iexcloud.io/docs/api/#logo)
+
+[Current Price](https://iexcloud.io/docs/api/#price-only)
+
+[Historical Prices](https://iexcloud.io/docs/api/#historical-prices)
+
+[Key Stats](https://iexcloud.io/docs/api/#key-stats)
+
+[Peer Groups](https://iexcloud.io/docs/api/#peer-groups)
