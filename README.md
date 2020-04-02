@@ -1,4 +1,4 @@
-#Investmate Web App
+# Investmate Web App
 
 ## Project title
 Using React and ReactStrap, I built a stock tracking website inspired by the investing company[Stash](https://www.stashinvest.com/)
@@ -7,17 +7,17 @@ Using React and ReactStrap, I built a stock tracking website inspired by the inv
 I wanted to demonstrate the tools and techniques taught during the second unit of General Assembly's Software Engineering course to show how I can build a React app with a clean and easy to navigate website. 
  
 ## Screenshots
-###Landing Page
+### Landing Page
 ![LandingPage](https://res.cloudinary.com/doaftkgbv/image/upload/v1585866230/LandingPage_yoa5oc.png)
 
-###Company Research
+### Company Research
 ![CompanyResearch](https://res.cloudinary.com/doaftkgbv/image/upload/v1585866228/ResearchCards_izil1m.png)
 
-###Company Details
+### Company Details
 ![CompanyOverview](https://res.cloudinary.com/doaftkgbv/image/upload/v1585866228/Research_opulml.png)
 ![CompanyDetails](https://res.cloudinary.com/doaftkgbv/image/upload/v1585866229/DetailsDetails_a8xlxi.png)
 
-###Peer Groups
+### Peer Groups
 ![Peer Groups](https://res.cloudinary.com/doaftkgbv/image/upload/v1585866225/PeerGroups_l3v0iz.png)
 
 ## Tech/framework used
@@ -31,9 +31,12 @@ I wanted to demonstrate the tools and techniques taught during the second unit o
 ## Features
 What makes your project stand out?
 
-## Code Example
-Show what the library does as concisely as possible, developers should be able to figure out **how** your project solves their problem by looking at the code example. Make sure the API you are showing off is obvious, and that your code is short and concise.
 
 ## API Reference
-See 
-
+[Sectors](https://iexcloud.io/docs/api/#sectors)
+[Collections](https://iexcloud.io/docs/api/#collections)
+[Company Logo](https://iexcloud.io/docs/api/#logo)
+[Current Price](https://iexcloud.io/docs/api/#price-only)
+[Historical Prices](https://iexcloud.io/docs/api/#historical-prices)
+[Key Stats](https://iexcloud.io/docs/api/#key-stats)
+[Peer Groups](https://iexcloud.io/docs/api/#peer-groups)
