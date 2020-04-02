@@ -62,8 +62,9 @@ function Header({sectors, selectedSector, setSelectedSector, setCurrentPage}) {
                   </DropdownMenu>
               </UncontrolledDropdown>
               <NavItem>
-                  <Link to="/favs">My Favorites</Link>
+                  <Link className="nav-link" to="/favs">My Favorites</Link>
               </NavItem>
+
           </Nav>
       )
     }
@@ -76,7 +77,7 @@ function Header({sectors, selectedSector, setSelectedSector, setCurrentPage}) {
                 <Collapse isOpen={!collapsed} navbar >
                     <Nav navbar className="mobileNav">
                         <NavItem>
-                            <Link to="/favs">My Favorites</Link>
+                            <Link className="nav-link" to="/favs">My Favorites</Link>
                         </NavItem>
                         <NavItem>
                             <h5>Sectors</h5>
@@ -91,7 +92,7 @@ function Header({sectors, selectedSector, setSelectedSector, setCurrentPage}) {
     return (
         <div className="header">
             <Navbar color="light" light expand="md">
-                <NavbarBrand to="/" >investmate</NavbarBrand>
+                <Link className="navbar-brand" to="/" >investmate</Link>
                 {tabletNavContents()}
                 {mobileNavContents()}
             </Navbar>
