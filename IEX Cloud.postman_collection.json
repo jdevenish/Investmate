@@ -241,25 +241,25 @@
 	],
 	"variable": [
 		{
-			"id": "cec38f66-a685-4e7b-b2f9-8611b9df972d",
+			"id": "3fb80915-ae04-4c4b-b73e-8f51245e086d",
 			"key": "sandboxAPI",
-			"value": "Tpk_d93c81541b234b3ea6078cf3db45dfc7",
+			"value": "ADD_API_KEY",
 			"type": "string"
 		},
 		{
-			"id": "b3c5fcc8-1e93-40e2-bd37-12d5ce3e928b",
+			"id": "3f9fbd57-da55-4e22-b26d-794dcc16f4ec",
 			"key": "sandboxURL",
 			"value": "https://sandbox.iexapis.com/stable/stock",
 			"type": "string"
 		},
 		{
-			"id": "26e3fcb2-a640-4ec3-8fba-957ae4bbf589",
+			"id": "c4dec038-31ed-40e4-b73d-402779202883",
 			"key": "productionAPI",
-			"value": "pk_cd56e3f5acb247ea8f5b446212057641",
+			"value": "ADD_API_KEY",
 			"type": "string"
 		},
 		{
-			"id": "42536c8f-5895-4780-adfd-49c24c82f738",
+			"id": "c12903fb-ca87-487a-a07a-9ac8f10ee5cc",
 			"key": "productionURL",
 			"value": "https://cloud.iexapis.com/stable/stock",
 			"type": "string"
