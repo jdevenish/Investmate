@@ -1,6 +1,5 @@
-import React, {useContext, useEffect} from 'react';
+import React, {useContext} from 'react';
 import { StocksContext } from '../App'
-import apiCred from "../apiDetails";
 import CompanyOverview from "./CompanyOverview";
 import CompanyDetails from "./CompanyDetails";
 import CompanyPeers from "./CompanyPeers";

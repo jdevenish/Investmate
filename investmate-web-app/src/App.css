@@ -376,6 +376,14 @@
   width: 95vw;
 }
 
+.chartContainer{
+  padding-right: 15px;
+}
+
+
+.canvasjs-chart-canvas{
+  padding-right: 15px;
+}
 /*==================================
 
       TABLET & DESKTOP RESPONSIVE

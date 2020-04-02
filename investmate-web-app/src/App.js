@@ -7,7 +7,8 @@ import Main from "./Components/Main";
 import Footer from "./Components/Footer";
 import apiCred from "./apiDetails";
 
-import staticStockData from "./StaticDataFiles/collectionTechnologyServices.json"
+// Uncomment to use local static data
+// import staticStockData from "./StaticDataFiles/collectionTechnologyServices.json"
 
 // These data sets are larger than 5MB making it impossible to store locally.
 const sectorBlackList = ["Health Services", "Finance", "Non-Energy Minerals", "Miscellaneous"];

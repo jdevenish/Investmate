@@ -12,10 +12,12 @@ import apiCred from "../apiDetails";
 
 
 function CompanyPeers({sharedStates}) {
+    console.log("Entered CompanyPeers Component")
     // console.log("Company Overview: ", currentSymbolDetails)
     const peerGroup = sharedStates.showDetailsFor.peerGroups;
     const [peerObjs, setPeerObjs] = useState([])
-
+    const [activeIndex, setActiveIndex] = useState(0);
+    const [animating, setAnimating] = useState(false);
 
     // console.log("CompanyPeers - peersArr: ", sharedStates.showDetailsFor.peerGroups);
 
@@ -45,10 +47,9 @@ function CompanyPeers({sharedStates}) {
 
         };
         makeImgApiCall()
-    }, [])
+    }, []);
 
-    const [activeIndex, setActiveIndex] = useState(0);
-    const [animating, setAnimating] = useState(false);
+
 
     const next = () => {
         if (animating) return;
@@ -97,6 +98,8 @@ function CompanyPeers({sharedStates}) {
             </CarouselItem>
         )
     });
+
+    console.log("CompanyPeers - peerCards: Checking value of cards = ", peerCards);
 
     return (
         <div className="carousel-container">
