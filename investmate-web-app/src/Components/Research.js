@@ -12,20 +12,15 @@ import apiCred from "../apiDetails";
 function Research() {
     const cardLimit =  24;
     const sharedStates = useContext(StocksContext)
-    // console.log("Research - Checking State Values: ", sharedStates)
 
-    // Current page limits. Used in sharedStates.stocksArr
     const upperLimit = (cardLimit * (sharedStates.currentPage));
     const lowerLimit = sharedStates.currentPage > 0 ? (cardLimit * (sharedStates.currentPage-1)) : 0;
 
-    // Update selected stock symbol when card is clicked
     function handleStockSelection(symbl) {
         localStorage.setItem("lastSelectedSymbol", symbl)
         sharedStates.setSelectedSymbl(symbl)
     }
 
-    // Clean up local storage when new sector is chosen
-    // Data set is very large (1.5MB - 4MB) and can't hold more than one sector
     function handleSectorSelection(newSector){
         if(newSector !== sharedStates.selectedSector) {
             console.log("Research - handleSectorSelection: New sector selection is = ",newSector);
@@ -41,31 +36,6 @@ function Research() {
         }
     }
 
-
-    /*============ NETWORK CALL - Fetch Stock Icons ============================
-
-        ON sharedStates.currentPage Change: --> Includes initialization
-            IF currentPage is not = to initialized value
-                IF stocksArr of lowerLimit does not have property imgURL (stocksArr.hasOwnProperty(key))
-                    MAKE API call
-                        CREATE copy of stocksArr
-                        FOR each stock between lower and upper limits
-                            CREATE api URL
-                            MAKE request
-                            WAIT for response and save to value json
-                            UPDATE copy of stocksArr with imgURL key and value
-                        ENDFOR
-                        UPDATE local storage with copy of stocksArr
-                        UPDATE state setStocksArr
-                    END API call
-                ELSE
-                    Do nothing. Already fetched images for this page
-                ENDIF
-            ELSE
-                Do nothing. Still set to initialized value
-            ENDIF
-
-     =========================================================================*/
     useEffect( () => {
         if(sharedStates.currentPage > 0){
             console.log("RESEARCH - fetchIconData: current page has been updated = ", sharedStates.currentPage);
@@ -96,9 +66,6 @@ function Research() {
         }
     }, [sharedStates.currentPage]);
 
-
-
-    // Identify currently selected category and add active class.
     const sectorList = sharedStates.sectors.map( (sector, index) => {
         if(sector.name === sharedStates.selectedSector) {
             return (
@@ -119,9 +86,6 @@ function Research() {
         }
     });
 
-
-
-    // Build cards for each company displayed on the page
     const stockCards = sharedStates.stocksArr.map( (company, i) => {
         if(i >= lowerLimit && i < upperLimit){
             // Convert EPOCH date

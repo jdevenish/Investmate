@@ -9,12 +9,9 @@ function Details() {
     console.log(sharedStates);
     console.log("Details - detailComponent: Checking if this is running", sharedStates.selectedSymbl)
 
-
-    // Find the company object matching the user selected card/symbol
     let sectorSymblDetails = sharedStates.stocksArr.find((currentSymbObj) => {
         return currentSymbObj.symbol === sharedStates.selectedSymbl;
     });
-
 
     return (
         <div className="details-container">

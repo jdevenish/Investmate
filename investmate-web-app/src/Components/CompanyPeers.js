@@ -12,17 +12,13 @@ import apiCred from "../apiDetails";
 
 
 function CompanyPeers({sharedStates}) {
-    console.log("Entered CompanyPeers Component")
-    // console.log("Company Overview: ", currentSymbolDetails)
+    console.log("Entered CompanyPeers Component");
+
     const peerGroup = sharedStates.showDetailsFor.peerGroups;
     const [peerObjs, setPeerObjs] = useState([])
     const [activeIndex, setActiveIndex] = useState(0);
     const [animating, setAnimating] = useState(false);
 
-    // console.log("CompanyPeers - peersArr: ", sharedStates.showDetailsFor.peerGroups);
-
-    // Will only find peers for the sector we already have downloaded.
-    // To reduce API limits, will not fetch unknown peers at this point
     const knownPeers = sharedStates.stocksArr.filter((stock) => {
         for(let i=0; i<peerGroup.length; i++){
             if(stock.symbol === peerGroup[i]){

@@ -19,8 +19,6 @@ function Header({sectors, selectedSector, setSelectedSector, setCurrentPage}) {
     const [collapsed, setCollapsed] = useState(true);
     const toggleNavbar = () => setCollapsed(!collapsed);
 
-
-    // Clean up local storage. Data set is very large ~ 3.5MB
     function handleSectorSelection(newSector){
         if(newSector !== selectedSector){
             console.log("Header - handleSectorSelection: New sector selection is = ",newSector);
@@ -41,7 +39,6 @@ function Header({sectors, selectedSector, setSelectedSector, setCurrentPage}) {
         setCollapsed(!collapsed);
     }
 
-    // console.log("Header - sectors: ",sectors)
     const searchOptions = sectors.map((sector, i) => {
         return (
             <Link to="/research" key={i} onClick={()=>handleSectorSelection(sector.name)}>
@@ -52,7 +49,6 @@ function Header({sectors, selectedSector, setSelectedSector, setCurrentPage}) {
         );
     });
 
-    // console.log("Header - sectors: ",sectors)
     const mobSearchOptions = sectors.map((sector, i) => {
         return (
             <Link
@@ -65,7 +61,6 @@ function Header({sectors, selectedSector, setSelectedSector, setCurrentPage}) {
         );
     });
 
-    // Build Desktop and Table Navigation Menu
     function tabletNavContents() {
       return (
           <Nav className="mr-auto tabletNav" navbar>
@@ -85,7 +80,6 @@ function Header({sectors, selectedSector, setSelectedSector, setCurrentPage}) {
       )
     }
 
-    // Build Mobile Navigation Menu
     function mobileNavContents() {
         return(
             <>

@@ -6,7 +6,6 @@ import {Card, CardBody, CardText, CardTitle, Spinner, Button} from "reactstrap";
 function Favs() {
     const sharedStates = useContext(StocksContext);
 
-
     console.log("Favs = ",sharedStates.favs);
 
     function removeFavs(index){
@@ -16,17 +15,15 @@ function Favs() {
         sharedStates.setFavs(copyFavs)
     }
 
-    // Update selected stock symbol when card is clicked
     function handleStockSelection(symbl) {
         localStorage.setItem("lastSelectedSymbol", symbl);
         sharedStates.setSelectedSymbl(symbl)
     }
 
     let headingStatement = "Companies you're currently tracking";
-    if(sharedStates.favs.length < 1) headingStatement = "It doesn't look like you've added a company to track yet..."
+    if(sharedStates.favs.length < 1) headingStatement = "Looks like you haven't added a company to track yet..."
 
     const favCards = sharedStates.favs.map( (fav, index) => {
-
         return(
             <div className="research-cards-cardContainer" key={index}>
                 <Link
