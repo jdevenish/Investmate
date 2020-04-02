@@ -62,7 +62,7 @@ function Header({sectors, selectedSector, setSelectedSector, setCurrentPage}) {
                   </DropdownMenu>
               </UncontrolledDropdown>
               <NavItem>
-                  <NavLink to="/favs/">My Favorites</NavLink>
+                  <Link to="/favs">My Favorites</Link>
               </NavItem>
           </Nav>
       )
@@ -76,7 +76,7 @@ function Header({sectors, selectedSector, setSelectedSector, setCurrentPage}) {
                 <Collapse isOpen={!collapsed} navbar >
                     <Nav navbar className="mobileNav">
                         <NavItem>
-                            <NavLink to="/favs">My Favorites</NavLink>
+                            <Link to="/favs">My Favorites</Link>
                         </NavItem>
                         <NavItem>
                             <h5>Sectors</h5>
