@@ -62,7 +62,7 @@ function Header({sectors, selectedSector, setSelectedSector, setCurrentPage}) {
                   </DropdownMenu>
               </UncontrolledDropdown>
               <NavItem>
-                  <NavLink href="/favs/">My Favorites</NavLink>
+                  <NavLink to="/favs/">My Favorites</NavLink>
               </NavItem>
           </Nav>
       )
@@ -91,7 +91,7 @@ function Header({sectors, selectedSector, setSelectedSector, setCurrentPage}) {
     return (
         <div className="header">
             <Navbar color="light" light expand="md">
-                <NavbarBrand href="/" >investmate</NavbarBrand>
+                <NavbarBrand to="/" >investmate</NavbarBrand>
                 {tabletNavContents()}
                 {mobileNavContents()}
             </Navbar>
