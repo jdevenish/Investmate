@@ -33,7 +33,7 @@ What makes your project stand out?
 
 
 ## API Reference
-Download and import the Postman collection 
+Download and import the [Postman Collection]() to test out the APIs yourself. Just add your own API key and off you go. 
 
 <b>[Sectors](https://iexcloud.io/docs/api/#sectors)</b>
 <b>[Collections](https://iexcloud.io/docs/api/#collections)</b>
