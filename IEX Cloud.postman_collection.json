@@ -1,0 +1,269 @@
+{
+	"info": {
+		"_postman_id": "d5990186-3685-4026-a665-6dc003c4044e",
+		"name": "IEX Cloud",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Collection Type - Sector",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{sandboxURL}}/stock/market/collection/sector?collectionName=Transportation&token={{sandboxAPI}}",
+					"host": [
+						"{{sandboxURL}}"
+					],
+					"path": [
+						"stock",
+						"market",
+						"collection",
+						"sector"
+					],
+					"query": [
+						{
+							"key": "collectionName",
+							"value": "Transportation"
+						},
+						{
+							"key": "token",
+							"value": "{{sandboxAPI}}"
+						}
+					]
+				},
+				"description": "Returns an array of quote objects for a given collection type. Currently supported collection types are sector, tag, and list"
+			},
+			"response": []
+		},
+		{
+			"name": "Sectors - Search Options",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{productionURL}}/ref-data/sectors?token={{productionAPI}}",
+					"host": [
+						"{{productionURL}}"
+					],
+					"path": [
+						"ref-data",
+						"sectors"
+					],
+					"query": [
+						{
+							"key": "token",
+							"value": "{{productionAPI}}"
+						}
+					]
+				},
+				"description": "Returns an array of sectors.\n"
+			},
+			"response": []
+		},
+		{
+			"name": "Image",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Current Price",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "${apiCred.url}/stock/${selectedSymbl}/price?token=${apiCred.apiKey}",
+					"host": [
+						"${apiCred",
+						"url}"
+					],
+					"path": [
+						"stock",
+						"${selectedSymbl}",
+						"price"
+					],
+					"query": [
+						{
+							"key": "token",
+							"value": "${apiCred.apiKey}"
+						}
+					]
+				},
+				"description": "Retrieve the current stock price for the desired company"
+			},
+			"response": []
+		},
+		{
+			"name": "Key Stats",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "${apiCred.url}/stock/${selectedSymbl}/stats/?token=${apiCred.apiKey}",
+					"host": [
+						"${apiCred",
+						"url}"
+					],
+					"path": [
+						"stock",
+						"${selectedSymbl}",
+						"stats",
+						""
+					],
+					"query": [
+						{
+							"key": "token",
+							"value": "${apiCred.apiKey}"
+						}
+					]
+				},
+				"description": "Retrieve the key stats for a company"
+			},
+			"response": []
+		},
+		{
+			"name": "Company Overview",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "${apiCred.url}/stock/${selectedSymbl}/company?token=${apiCred.apiKey}",
+					"host": [
+						"${apiCred",
+						"url}"
+					],
+					"path": [
+						"stock",
+						"${selectedSymbl}",
+						"company"
+					],
+					"query": [
+						{
+							"key": "token",
+							"value": "${apiCred.apiKey}"
+						}
+					]
+				},
+				"description": "Retrieve information about the company"
+			},
+			"response": []
+		},
+		{
+			"name": "Peer Groups",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "${apiCred.url}/stock/${selectedSymbl}/peers?token=${apiCred.apiKey}",
+					"host": [
+						"${apiCred",
+						"url}"
+					],
+					"path": [
+						"stock",
+						"${selectedSymbl}",
+						"peers"
+					],
+					"query": [
+						{
+							"key": "token",
+							"value": "${apiCred.apiKey}"
+						}
+					]
+				},
+				"description": "Retrieve an array of peers for the desired company\n"
+			},
+			"response": []
+		},
+		{
+			"name": "Historical Data",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "${apiCred.url}/stock/${selectedSymbl}/chart/6m?token=${apiCred.apiKey}&chartInterval=20",
+					"host": [
+						"${apiCred",
+						"url}"
+					],
+					"path": [
+						"stock",
+						"${selectedSymbl}",
+						"chart",
+						"6m"
+					],
+					"query": [
+						{
+							"key": "token",
+							"value": "${apiCred.apiKey}"
+						},
+						{
+							"key": "chartInterval",
+							"value": "20"
+						}
+					]
+				},
+				"description": "Get data for the last six months. Data is provided in an array."
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "apikey"
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "b842c6dc-2c1f-4662-ae3f-f1945247e31c",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "c0d0f860-9b7c-4d6f-a5a1-26146ab9151e",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "cec38f66-a685-4e7b-b2f9-8611b9df972d",
+			"key": "sandboxAPI",
+			"value": "Tpk_d93c81541b234b3ea6078cf3db45dfc7",
+			"type": "string"
+		},
+		{
+			"id": "b3c5fcc8-1e93-40e2-bd37-12d5ce3e928b",
+			"key": "sandboxURL",
+			"value": "https://sandbox.iexapis.com/stable/stock",
+			"type": "string"
+		},
+		{
+			"id": "26e3fcb2-a640-4ec3-8fba-957ae4bbf589",
+			"key": "productionAPI",
+			"value": "pk_cd56e3f5acb247ea8f5b446212057641",
+			"type": "string"
+		},
+		{
+			"id": "42536c8f-5895-4780-adfd-49c24c82f738",
+			"key": "productionURL",
+			"value": "https://cloud.iexapis.com/stable/stock",
+			"type": "string"
+		}
+	],
+	"protocolProfileBehavior": {}
+}
