@@ -77,7 +77,8 @@
 }
 
 .search-container{
-  width: 400px;
+  max-width: 400px;
+  min-width: 200px;
   margin-top: 20px;
   align-self: center;
 }
@@ -166,6 +167,7 @@
   width: 85%;
   margin: 40px auto;
   display: flex;
+  flex-direction: column;
   justify-content: center;
 }
 
@@ -193,6 +195,7 @@
 .row {
   justify-content: space-between;
   margin: 0 10px;
+  flex-wrap: nowrap;
 }
 
 .details-disclosure {
@@ -207,12 +210,12 @@
 
 .details-disclosure > p {
   font-size: 11px;
-  width: 40%;
+  width: 100%;
 }
 
 .details-detailsContainer__table-companyInfo{
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   flex-wrap: nowrap;
   justify-content: space-between;
   margin-top: 15px;
@@ -291,13 +294,14 @@
 
 .welcomeBackground {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   flex-wrap: nowrap;
   background-image: url("https://res.cloudinary.com/doaftkgbv/image/upload/v1585589941/whitediamond__2X_w2jgh3.png");
   justify-content: space-between;
   /*height: 100%;*/
   /*align-self: stretch;*/
   height: 75vh;
+
 }
 
 .callToAction {
@@ -305,7 +309,10 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  margin-left: 40px;
+  /*margin-left: 40px;*/ /* May need to add to desktop*/
+  margin-top: 150px;
+  padding: 0 5px;
+  text-align: center;
 }
 
 .callToAction-slogan > h1{
@@ -320,7 +327,7 @@
 }
 
 .homepageAsset{
-  align-self: center;
+  display: none;
 }
 
 .dropdown-menu {
@@ -345,7 +352,6 @@
 .companyDetails{
   display: flex;
   justify-content: space-between;
-  width: 40vw;
 }
 
 .tabletNav {
@@ -376,6 +382,14 @@
   width: 95vw;
 }
 
+.chartContainer{
+  padding-right: 15px;
+}
+
+
+.canvasjs-chart-canvas{
+  padding-right: 15px;
+}
 /*==================================
 
       TABLET & DESKTOP RESPONSIVE
@@ -421,5 +435,41 @@
     color: grey;
   }
 
+  .details-overviewContainer {
+    flex-direction: row;
+  }
 
+  .welcomeBackground {
+    flex-direction: row;
+    flex-wrap: nowrap;
+    height: 75vh;
+
+  }
+
+  .homepageAsset{
+    display: block;
+    align-self: center;
+  }
+
+  .callToAction {
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    /*margin-left: 40px;*/ /* May need to add to desktop*/
+
+    text-align: left;
+  }
+
+  .details-disclosure > p {
+    width: 40%;
+  }
+
+  .companyDetails{
+    width: 40vw;
+  }
+
+  .details-detailsContainer__table-companyInfo{
+    flex-direction: row;
+  }
 }

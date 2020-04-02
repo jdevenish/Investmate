@@ -3,6 +3,8 @@ import {
     Card, CardText, CardBody,
     CardTitle, Button, Spinner
 } from 'reactstrap';
+import CanvasJSReact from '../canvasjs.react';
+const CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
 function CompanyOverview({sharedStates, currentSymbolDetails}) {
     console.log("Company Overview - current Symbol details ", currentSymbolDetails)
@@ -17,20 +19,47 @@ function CompanyOverview({sharedStates, currentSymbolDetails}) {
         sharedStates.setFavs(copyFavs);
     }
 
+    //https://canvasjs.com/
+    const options = {
+        theme: "light2", // "light1", "light2", "dark1", "dark2"
+        animationEnabled: true,
+        exportEnabled: true,
+        title:{
+            text: `Stock Price -  last 6 months`
+        },
+        axisX: {
+            valueFormatString: "MMM"
+        },
+        axisY: {
+            includeZero:false,
+            prefix: "$",
+            title: "Price (in USD)"
+        },
+        data: [{
+            type: "candlestick",
+            showInLegend: true,
+            name: `${overviewObj.companyName}`,
+            yValueFormatString: "$###0.00",
+            xValueFormatString: "MMMM YY",
+            dataPoints: sharedStates.showDetailsFor.historicalData
+        }
+        ]
+    };
+
     return (
         <div className="details-overviewContainer">
-            <div> {/* left hand side*/}
+            <div>
                 <div className="details-overviewContainer__header">
                     <p>Ticker: {overviewObj.symbol}</p>
                     <h1>{overviewObj.companyName}</h1>
                     <h1>${sharedStates.showDetailsFor.latestPrice} </h1>
                 </div>
-                <div>
-                    <h2>Add graph</h2>
+                <div className="chartContainer">
+                    <CanvasJSChart options={options}/>
                 </div>
             </div>
-            <div> {/* right hand card*/}
-                <div> {/* Card */}
+            <div>
+                <div>
                     <Card>
                         <div className="research-cards-iconContainer">
                             {sharedStates.showDetailsFor.hasOwnProperty("imgURL") ? <img className="research-cards-iconContainer__icon" src={sharedStates.showDetailsFor.imgURL} alt={overviewObj.symbol}/> : <Spinner color="secondary"/>}
@@ -49,7 +78,7 @@ function CompanyOverview({sharedStates, currentSymbolDetails}) {
                         </CardBody>
                     </Card>
                 </div>
-                <div> {/* Button */}
+                <div>
                     <p className="disclaimer">Disclaimer: Any investment you’ve selected
                         here, which may be available
                         on the investmate platform, is intended to be used for

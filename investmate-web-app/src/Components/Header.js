@@ -2,10 +2,8 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import {
     Navbar,
-    NavbarBrand,
     Nav,
     NavItem,
-    NavLink,
     UncontrolledDropdown,
     DropdownToggle,
     DropdownMenu,
@@ -38,6 +36,11 @@ function Header({sectors, selectedSector, setSelectedSector, setCurrentPage}) {
         }
     }
 
+    function handleMobSectorSelection(newSector) {
+        handleSectorSelection(newSector)
+        setCollapsed(!collapsed);
+    }
+
     // console.log("Header - sectors: ",sectors)
     const searchOptions = sectors.map((sector, i) => {
         return (
@@ -45,6 +48,19 @@ function Header({sectors, selectedSector, setSelectedSector, setCurrentPage}) {
             <DropdownItem >
                 {sector.name}
             </DropdownItem>
+            </Link>
+        );
+    });
+
+    // console.log("Header - sectors: ",sectors)
+    const mobSearchOptions = sectors.map((sector, i) => {
+        return (
+            <Link
+                to="/research"
+                className="nav-link"
+                key={i}
+                onClick={()=>handleMobSectorSelection(sector.name)}>
+                {sector.name}
             </Link>
         );
     });
@@ -81,7 +97,7 @@ function Header({sectors, selectedSector, setSelectedSector, setCurrentPage}) {
                         </NavItem>
                         <NavItem>
                             <h5>Sectors</h5>
-                            {searchOptions}
+                            {mobSearchOptions}
                         </NavItem>
                     </Nav>
                 </Collapse>
