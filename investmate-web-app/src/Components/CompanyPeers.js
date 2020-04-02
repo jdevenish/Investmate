@@ -32,7 +32,6 @@ function CompanyPeers({sharedStates}) {
     });
 
 
-
     useEffect( () => {
         const makeImgApiCall = async () => {
             for(let i=0; i<knownPeers.length; i++){
@@ -44,12 +43,9 @@ function CompanyPeers({sharedStates}) {
                }
             }
             setPeerObjs(knownPeers)
-
         };
         makeImgApiCall()
     }, []);
-
-
 
     const next = () => {
         if (animating) return;

@@ -18,16 +18,16 @@ function CompanyDetails({sharedStates}) {
                     <NavItem>
                         <NavLink
                             className={classnames({ active: activeTab === '1' })}
-                            onClick={() => { toggle('1'); }}
-                        >
+                            onClick={() => { toggle('1'); }} >
+
                             Performance Breakdown
                         </NavLink>
                     </NavItem>
                     <NavItem>
                         <NavLink
                             className={classnames({ active: activeTab === '2' })}
-                            onClick={() => { toggle('2'); }}
-                        >
+                            onClick={() => { toggle('2'); }} >
+
                             Company Info
                         </NavLink>
                     </NavItem>

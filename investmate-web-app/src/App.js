@@ -24,7 +24,8 @@ function App() {
                                                                    latestPrice: -1,
                                                                         keyStats : [],
                                                                         overview : {},
-                                                                        peerGroups: []
+                                                                        peerGroups: [],
+                                                                    historicalData: []
                                                                     });
     const [favs, setFavs] = useState([]);
     const [currentPage, setCurrentPage] = useState(0);
@@ -187,10 +188,12 @@ function App() {
                 // Update Selected Symbol
                 copyShowDetailsFor.symbl = selectedSymbl;
 
+                // Fetch Latest Price
                 const priceAPI = `${apiCred.url}/stock/${selectedSymbl}/price?token=${apiCred.apiKey}`;
                 const resPriceAPI = await fetch(priceAPI)
                 copyShowDetailsFor.latestPrice = await resPriceAPI.json();
 
+                // Fetch Logo
                 const fetchImgAPI = `${apiCred.url}/stock/${selectedSymbl}/logo?token=${apiCred.apiKey}`;
                 const res = await fetch(fetchImgAPI);
                 const json = await res.json();
@@ -211,6 +214,23 @@ function App() {
                 const resPeerGroups = await fetch(peerGroupAPI);
                 copyShowDetailsFor.peerGroups = await resPeerGroups.json();
 
+                // Fetch Historical Data
+                const historicalDataAPI = `${apiCred.url}/stock/${selectedSymbl}/chart/6m?token=${apiCred.apiKey}&chartInterval=20`;
+                const resHistoricalData = await fetch(historicalDataAPI);
+                const jsonHistoricalData = await resHistoricalData.json();
+                const dataPointsArr = jsonHistoricalData.map((snapShot, index) =>{
+                    let tempObject = {
+                        x: new Date(snapShot.date),
+                        y: [
+                            snapShot.open,
+                            snapShot.high,
+                            snapShot.low,
+                            snapShot.close
+                        ]
+                    };
+                    return tempObject
+                });
+                copyShowDetailsFor.historicalData = dataPointsArr;
                 setShowDetailsFor(copyShowDetailsFor)
             };
             makeDetailsApiCall()
