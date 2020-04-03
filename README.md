@@ -1,7 +1,7 @@
 # Investmate Web App
 
 ## Project title
-Using React and ReactStrap, I built a stock tracking website inspired by the investing company[Stash](https://www.stashinvest.com/)
+Using React and ReactStrap, I built a stock tracking website inspired by the investing company [Stash](https://www.stashinvest.com/)
 
 ## Motivation
 I wanted to demonstrate the tools and techniques taught during the second unit of General Assembly's Software Engineering course to show how I can build a React app with a clean and easy to navigate website. 
