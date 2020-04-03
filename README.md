@@ -1,10 +1,11 @@
 # Investmate Web App
 
-## Project title
-Using React and ReactStrap, I built a stock tracking website inspired by the investing company [Stash](https://www.stashinvest.com/)
+## Project Description
+I was given one week to build a React website which consumed an API. 
 
-## Motivation
-I wanted to demonstrate the tools and techniques taught during the second unit of General Assembly's Software Engineering course to show how I can build a React app with a clean and easy to navigate website. 
+I wanted to demonstrate the tools and techniques taught during the second unit of General Assembly's Software Engineering course to show how I can build a React app with a clean and easy to navigate website. I decided to build a website that allows users to browse and research company's stock information. It also allows users to save and review their favorites so they can keep with changes with a click of a button. 
+
+I went with this website idea because it gave me the opportunity to build a lot of different components. Everything from the nav menu drop down selector to a card carousel. 
  
 ## Screenshots
 ### Landing Page
@@ -28,9 +29,6 @@ I wanted to demonstrate the tools and techniques taught during the second unit o
 - [ReactStrap](https://reactstrap.github.io/)
 - [canvasJS](https://canvasjs.com/)
 - [IEX Cloud](https://iexcloud.io/)
-
-## Features
-What makes your project stand out?
 
 
 ## API Reference
