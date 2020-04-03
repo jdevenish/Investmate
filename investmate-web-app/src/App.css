@@ -145,13 +145,14 @@
   justify-content: center;
   align-items: center;
   margin: 0 auto;
-  object-fit: contain;
+
 }
 
 .research-cards-iconContainer__icon{
   height: 175px;
   width: 175px;
   border-radius: .25rem;
+  object-fit: contain;
 }
 
 .research-pagination {
