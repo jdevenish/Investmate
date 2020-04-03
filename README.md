@@ -16,7 +16,7 @@ I wanted to demonstrate the tools and techniques taught during the second unit o
 ### Company Details
 ![CompanyOverview](https://res.cloudinary.com/doaftkgbv/image/upload/v1585866228/Research_opulml.png)
 ![CompanyDetails](https://res.cloudinary.com/doaftkgbv/image/upload/v1585866229/DetailsDetails_a8xlxi.png)
-
+![CompanyDeskMob](https://res.cloudinary.com/doaftkgbv/image/upload/v1585875096/Research_ovxskc.png)
 ### Peer Groups
 ![Peer Groups](https://res.cloudinary.com/doaftkgbv/image/upload/v1585866225/PeerGroups_l3v0iz.png)
 
