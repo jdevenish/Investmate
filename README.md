@@ -14,7 +14,7 @@ I wanted to demonstrate the tools and techniques taught during the second unit o
 ![CompanyResearch](https://res.cloudinary.com/doaftkgbv/image/upload/v1585866228/ResearchCards_izil1m.png)
 
 ### Company Details
-![CompanyOverview](https://res.cloudinary.com/doaftkgbv/image/upload/v1585875736/Overview_l1ktkl.png)
+![CompanyOverview](https://res.cloudinary.com/doaftkgbv/image/upload/v1585876575/ResearchStacked_olt9m1.png)
 ![CompanyDetails](https://res.cloudinary.com/doaftkgbv/image/upload/v1585875417/DetailsBreakdown_kk0kpd.png)
 ![CompanyDeskMob](https://res.cloudinary.com/doaftkgbv/image/upload/v1585875392/DetailsDetails1_p0jn8n.png)
 
