@@ -20,7 +20,7 @@ function CompanyOverview({sharedStates, currentSymbolDetails}) {
     }
 
     const options = {
-        theme: "light2", // "light1", "light2", "dark1", "dark2"
+        theme: "light2",
         animationEnabled: true,
         exportEnabled: true,
         title:{

@@ -36,7 +36,6 @@ function Research() {
     useEffect( () => {
         if(sharedStates.currentPage > 0){
             if(!sharedStates.stocksArr[lowerLimit].hasOwnProperty("imgURL")){
-                // Make API call for all stocks visible on the page
                 const makeImgApiCall = async () => {
                     const copyStocksArr = [...sharedStates.stocksArr];
 
@@ -46,7 +45,6 @@ function Research() {
                         const json = await res.json();
                         copyStocksArr[i]["imgURL"] = json.url;
                     }
-                    // Update state INSIDE API call function
                     localStorage.setItem(sharedStates.selectedSector, JSON.stringify(copyStocksArr));
                     sharedStates.setStocksArr(copyStocksArr);
                 };
@@ -79,7 +77,6 @@ function Research() {
 
     const stockCards = sharedStates.stocksArr.map( (company, i) => {
         if(i >= lowerLimit && i < upperLimit){
-            // Convert EPOCH date
             let lastUpdated = new Date(company.latestUpdate * 1000);
             lastUpdated.toJSON();
 

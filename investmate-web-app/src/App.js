@@ -32,7 +32,6 @@ function App() {
             const res = await fetch(sectorsAPI);
             const json = await res.json();
 
-            // Remove blacklisted sectors so app doesn't crash when trying to load
             const filteredSectors = json.filter((sector) => {
                 let match = false;
                 for(let i=0; i<sectorBlackList.length; i++){
@@ -66,11 +65,9 @@ function App() {
 
     useEffect( () => {
 
-        // Check if user has selected a sector
         if(selectedSector !== "dummySector"){
             let sortedSelectedData = JSON.parse(localStorage.getItem(selectedSector));
 
-            // Check if data in storage is valid. Fetch new data if it isn't.
             if(sortedSelectedData === null){
                 const makeSectorDataApiCall = async () => {
 
