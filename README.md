@@ -36,6 +36,7 @@ What makes your project stand out?
 Download and import the [Postman Collection](https://github.com/jdevenish/Investmate/blob/master/IEX%20Cloud.postman_collection.json) to test out the APIs yourself. Just add your own API key and off you go. 
 
 Links to documentation on IEX Cloud
+
 [Sectors](https://iexcloud.io/docs/api/#sectors)
 
 [Collections](https://iexcloud.io/docs/api/#collections)
