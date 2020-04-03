@@ -19,7 +19,7 @@ I wanted to demonstrate the tools and techniques taught during the second unit o
 ![CompanyDeskMob](https://res.cloudinary.com/doaftkgbv/image/upload/v1585875392/DetailsDetails1_p0jn8n.png)
 
 ### Peer Groups
-![Peer Groups](https://res.cloudinary.com/doaftkgbv/image/upload/v1585866225/PeerGroups_l3v0iz.png)
+![Peer Groups](https://res.cloudinary.com/doaftkgbv/image/upload/v1585876421/PeerGifs_vgwnbk.gif)
 
 ## Tech/framework used
 
