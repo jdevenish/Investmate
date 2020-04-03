@@ -14,9 +14,10 @@ I wanted to demonstrate the tools and techniques taught during the second unit o
 ![CompanyResearch](https://res.cloudinary.com/doaftkgbv/image/upload/v1585866228/ResearchCards_izil1m.png)
 
 ### Company Details
-![CompanyOverview](https://res.cloudinary.com/doaftkgbv/image/upload/v1585866228/Research_opulml.png)
-![CompanyDetails](https://res.cloudinary.com/doaftkgbv/image/upload/v1585866229/DetailsDetails_a8xlxi.png)
-![CompanyDeskMob](https://res.cloudinary.com/doaftkgbv/image/upload/v1585875096/Research_ovxskc.png)
+![CompanyOverview](https://res.cloudinary.com/doaftkgbv/image/upload/v1585875484/Research_gc2h4e.png)
+![CompanyDetails](https://res.cloudinary.com/doaftkgbv/image/upload/v1585875417/DetailsBreakdown_kk0kpd.png)
+![CompanyDeskMob](https://res.cloudinary.com/doaftkgbv/image/upload/v1585875392/DetailsDetails1_p0jn8n.png)
+
 ### Peer Groups
 ![Peer Groups](https://res.cloudinary.com/doaftkgbv/image/upload/v1585866225/PeerGroups_l3v0iz.png)
 
