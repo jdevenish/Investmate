@@ -12,7 +12,6 @@ import apiCred from "../apiDetails";
 
 
 function CompanyPeers({sharedStates}) {
-    console.log("Entered CompanyPeers Component");
 
     const peerGroup = sharedStates.showDetailsFor.peerGroups;
     const [peerObjs, setPeerObjs] = useState([])
@@ -90,8 +89,6 @@ function CompanyPeers({sharedStates}) {
             </CarouselItem>
         )
     });
-
-    console.log("CompanyPeers - peerCards: Checking value of cards = ", peerCards);
 
     return (
         <div className="carousel-container">

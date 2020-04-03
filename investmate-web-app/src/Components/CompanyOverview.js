@@ -7,9 +7,9 @@ import CanvasJSReact from '../canvasjs.react';
 const CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
 function CompanyOverview({sharedStates, currentSymbolDetails}) {
-    console.log("Company Overview - current Symbol details ", currentSymbolDetails)
+
     const overviewObj = sharedStates.showDetailsFor.overview;
-    console.log("Company Overview - overviewObj check: ", overviewObj);
+
 
     function updateFavs(imgURL) {
         const copyFavs = [...sharedStates.favs];

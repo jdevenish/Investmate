@@ -10,7 +10,6 @@ function Home() {
 
     const handleUserSubmit = e => {
         sharedStates.setSelectedSymbl(symbl);
-        console.log("Home - sharedStates: ",sharedStates)
     };
 
     const handleChange = e => { setSymbl(e.target.value) };

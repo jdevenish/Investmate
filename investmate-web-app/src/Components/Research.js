@@ -23,24 +23,19 @@ function Research() {
 
     function handleSectorSelection(newSector){
         if(newSector !== sharedStates.selectedSector) {
-            console.log("Research - handleSectorSelection: New sector selection is = ",newSector);
             while(localStorage.getItem(sharedStates.selectedSector) !== null) {
-                console.log("Research - handleSectorSelection: removing old sector data")
                 localStorage.clear();
             }
             localStorage.setItem("selectedSector", newSector);
             sharedStates.setSelectedSector(newSector);
             sharedStates.setCurrentPage(0)
         } else {
-            console.log("Research - handleSectorSelection: Selected sector is equal to previous selector. Do nothing ")
         }
     }
 
     useEffect( () => {
         if(sharedStates.currentPage > 0){
-            console.log("RESEARCH - fetchIconData: current page has been updated = ", sharedStates.currentPage);
             if(!sharedStates.stocksArr[lowerLimit].hasOwnProperty("imgURL")){
-                console.log("RESEARCH - fetchIconData: Need to fetch icons for this page");
                 // Make API call for all stocks visible on the page
                 const makeImgApiCall = async () => {
                     const copyStocksArr = [...sharedStates.stocksArr];
@@ -50,19 +45,15 @@ function Research() {
                         const res = await fetch(fetchImgAPI);
                         const json = await res.json();
                         copyStocksArr[i]["imgURL"] = json.url;
-                        console.log("RESEARCH - fetchIconData: verify IMG URL = ", copyStocksArr[i].imgURL)
                     }
-                    console.log("RESEARCH - fetchIconData: data fetch complete. Updating states and local storage")
                     // Update state INSIDE API call function
                     localStorage.setItem(sharedStates.selectedSector, JSON.stringify(copyStocksArr));
                     sharedStates.setStocksArr(copyStocksArr);
                 };
                 makeImgApiCall();
             } else{
-                console.log("RESEARCH - fetchIconData: Do nothing. Have icons for this page = ", sharedStates.stocksArr[lowerLimit].imgURL);
             }
         } else{
-            console.log("RESEARCH - fetchIconData: Do nothing. Current page equals initialized value = ", sharedStates.currentPage)
         }
     }, [sharedStates.currentPage]);
 

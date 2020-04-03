@@ -6,8 +6,6 @@ import CompanyPeers from "./CompanyPeers";
 
 function Details() {
     const sharedStates = useContext(StocksContext)
-    console.log(sharedStates);
-    console.log("Details - detailComponent: Checking if this is running", sharedStates.selectedSymbl)
 
     let sectorSymblDetails = sharedStates.stocksArr.find((currentSymbObj) => {
         return currentSymbObj.symbol === sharedStates.selectedSymbl;

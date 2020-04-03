@@ -6,7 +6,6 @@ import {Card, CardBody, CardText, CardTitle, Spinner, Button} from "reactstrap";
 function Favs() {
     const sharedStates = useContext(StocksContext);
 
-    console.log("Favs = ",sharedStates.favs);
 
     function removeFavs(index){
         const copyFavs = [...sharedStates.favs];

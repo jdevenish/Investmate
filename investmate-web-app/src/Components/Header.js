@@ -21,16 +21,15 @@ function Header({sectors, selectedSector, setSelectedSector, setCurrentPage}) {
 
     function handleSectorSelection(newSector){
         if(newSector !== selectedSector){
-            console.log("Header - handleSectorSelection: New sector selection is = ",newSector);
+
             while(localStorage.getItem(selectedSector) !== null) {
-                console.log("Header - handleSectorSelection: removing old sector data");
+
                 localStorage.clear()
             }
             localStorage.setItem("selectedSector", newSector);
             setSelectedSector(newSector);
             setCurrentPage(0)
         } else{
-            console.log("Header - handleSectorSelection: Selected sector is equal to previous selector. Do nothing ")
         }
     }
 

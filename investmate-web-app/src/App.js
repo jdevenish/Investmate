@@ -68,12 +68,10 @@ function App() {
 
         // Check if user has selected a sector
         if(selectedSector !== "dummySector"){
-            console.log("APP - fetchSectorData: Selected sector has been set. It's value is ", selectedSector)
             let sortedSelectedData = JSON.parse(localStorage.getItem(selectedSector));
 
             // Check if data in storage is valid. Fetch new data if it isn't.
             if(sortedSelectedData === null){
-                console.log("APP - fetchSectorData: Existing data does not exist. New visitor or new selection")
                 const makeSectorDataApiCall = async () => {
 
                     const sectorDataAPI = `${apiCred.url}/stock/market/collection/sector?collectionName=${encodeURIComponent(selectedSector)}&token=${apiCred.apiKey}`
@@ -88,24 +86,20 @@ function App() {
                     localStorage.setItem("selectedSector", selectedSector);
                     setStocksArr(sortedSectorData);
                     setCurrentPage(1)
-                    console.log("APP - fetchSectorData: fetch complete. All states updated")
                 };
                 makeSectorDataApiCall()
 
             } else{
-                console.log("APP - fetchSectorData: Data exists in local storage. Returning user, use this data until another selection is made")
                 setStocksArr(sortedSelectedData);
                 setCurrentPage(1)
             }
         } else{
-            console.log("Selected sector hasn't been set. Waiting for user input")
+
         }
     }, [selectedSector])
 
     useEffect(() => {
-        console.log("Is this even running? ????? ");
         if(selectedSymbl.length > 0){
-            console.log("APP - detailsApiCall: User made a selection or we pulled a previous selection from local storage")
 
             const copyShowDetailsFor = {...showDetailsFor};
             const makeDetailsApiCall = async () => {
@@ -132,7 +126,7 @@ function App() {
                 const peerGroupAPI = `${apiCred.url}/stock/${selectedSymbl}/peers?token=${apiCred.apiKey}`;
                 const resPeerGroups = await fetch(peerGroupAPI);
                 copyShowDetailsFor.peerGroups = await resPeerGroups.json();
-                
+
                 const historicalDataAPI = `${apiCred.url}/stock/${selectedSymbl}/chart/6m?token=${apiCred.apiKey}&chartInterval=20`;
                 const resHistoricalData = await fetch(historicalDataAPI);
                 const jsonHistoricalData = await resHistoricalData.json();
@@ -154,13 +148,13 @@ function App() {
             makeDetailsApiCall()
 
         } else{
-            console.log("APP - detailsApiCall: New or returning user. Checking local storage ...")
+
             const localSelectedSymbol = localStorage.getItem("lastSelectedSymbol");
             if(localSelectedSymbol !== null){
-                console.log("APP - detailsApiCall: Returning user. Setting selectedSymbl")
+
                 setSelectedSymbl(localSelectedSymbol);
             } else{
-                console.log("APP - detailsApiCall: New user. Do nothing and wait for selection")
+
             }
         }
 
